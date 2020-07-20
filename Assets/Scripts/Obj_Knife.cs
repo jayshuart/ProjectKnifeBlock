@@ -83,6 +83,9 @@ public class Obj_Knife : MonoBehaviour
 
         //lock this knife
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
+
+        //update block damage state
+        target.GetComponent<Block_Break>().NextState();
     }
 
     void OnBecameInvisible() 

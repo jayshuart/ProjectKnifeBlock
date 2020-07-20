@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 5157772019722329300}
   - component: {fileID: 5157772019722329301}
   - component: {fileID: 5157772019722329290}
+  - component: {fileID: 87209614}
+  - component: {fileID: 87209615}
   m_Layer: 0
   m_Name: Block
   m_TagString: Untagged
@@ -118,5 +120,66 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 3
+--- !u!114 &87209614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5157772019722329288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cde29ef56472387418bc3aad7ee35eb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.01
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0.01
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  rotationSpeed: 25
+  invertRoationCurve: 0
+--- !u!114 &87209615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5157772019722329288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bfbacc53e8f9b14ab4784eaf5953492, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stateImgs:
+  - {fileID: 21300000, guid: a496e97bd9024a6408f36b607b2606c6, type: 3}
+  - {fileID: 21300000, guid: f0ee25e9cfb0bcf4da19ae1ec8425389, type: 3}
+  - {fileID: 21300000, guid: 5e06f1dbf1df6e1469844d5fee464e51, type: 3}
+  - {fileID: 21300000, guid: 3d6225018a16a6848895655148801cc3, type: 3}
+  - {fileID: 21300000, guid: 92272097f63936f4eb49006d2fcd46c5, type: 3}
+  - {fileID: 21300000, guid: 2b58135fe96e72f4a98fb4c94c53ab76, type: 3}
+  - {fileID: 21300000, guid: 0596c55c09cfe5849918aa3c5efc2eac, type: 3}
+  - {fileID: 21300000, guid: 48ad5362ef5b33045a2b7bb4b854eba5, type: 3}
+  - {fileID: 21300000, guid: 666620ab616dca54abf8e1b993f0827f, type: 3}
+  - {fileID: 21300000, guid: f344b2c9224089f469394d5fc0823cf2, type: 3}
