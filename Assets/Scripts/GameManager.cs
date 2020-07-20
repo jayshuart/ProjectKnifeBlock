@@ -6,11 +6,13 @@ public class GameManager : MonoBehaviour
 {
 
     [SerializeField] private int knives;
+    public int Knives { get{ return knives; } }
     [SerializeField] private float score;
     [SerializeField] private Transform knifeSpawn;
     [SerializeField] private GameObject knifePrefab;
     [SerializeField] private GameObject targetBlock;
     private Obj_Knife currentKnife;
+    public bool debug_infiniteKnives = false; //toggle for if we get extar knives past level limit
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +29,7 @@ public class GameManager : MonoBehaviour
     private void spawnKnife()
     {
         //check if we have knives to even throw, decriment or exit
-        if(knives < 0) { return; }
+        if(knives < 0 && !debug_infiniteKnives) { return; }
         knives--;
 
         //instantiate new knife, set as current

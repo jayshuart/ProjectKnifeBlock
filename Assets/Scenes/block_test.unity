@@ -144,7 +144,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!199 &439458370
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -217,7 +217,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 439458369}
   serializedVersion: 6
-  lengthInSec: 0.5
+  lengthInSec: 0.4
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -225,7 +225,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -293,7 +293,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       scalar: 1
-      minScalar: 5
+      minScalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -344,9 +344,9 @@ ParticleSystem:
         m_RotationOrder: 4
     startSpeed:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 5
-      minScalar: 5
+      minMaxState: 3
+      scalar: 7
+      minScalar: 3
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -460,9 +460,9 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     startSize:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 0.3
-      minScalar: 1
+      minMaxState: 3
+      scalar: 0.35
+      minScalar: 0.1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -513,7 +513,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeY:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -566,7 +566,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeZ:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -1041,8 +1041,8 @@ ParticleSystem:
     serializedVersion: 4
     rateOverTime:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 10
+      minMaxState: 3
+      scalar: 35
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -5382,12 +5382,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e4a18f8e3ff1c548a0a3372a88906d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knives: 10000000
+  knives: 10
   score: 0
   knifeSpawn: {fileID: 717303297}
   knifePrefab: {fileID: 528259872898274515, guid: 426168ffa93da3a4b84bbb38b5c89892,
     type: 3}
   targetBlock: {fileID: 87209613}
+  debug_infiniteKnives: 1
 --- !u!1001 &5157772019769354821
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5395,6 +5396,60 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 87209615, guid: 2623132e2f6fb2944927b5bf9d632dc7, type: 3}
+      propertyPath: woodParticles
+      value: 
+      objectReference: {fileID: 439458371}
+    - target: {fileID: 87209615, guid: 2623132e2f6fb2944927b5bf9d632dc7, type: 3}
+      propertyPath: stateImgs.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: f344b2c9224089f469394d5fc0823cf2,
+        type: 3}
+    - target: {fileID: 87209615, guid: 2623132e2f6fb2944927b5bf9d632dc7, type: 3}
+      propertyPath: stateImgs.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 666620ab616dca54abf8e1b993f0827f,
+        type: 3}
+    - target: {fileID: 87209615, guid: 2623132e2f6fb2944927b5bf9d632dc7, type: 3}
+      propertyPath: stateImgs.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: 48ad5362ef5b33045a2b7bb4b854eba5,
+        type: 3}
+    - target: {fileID: 87209615, guid: 2623132e2f6fb2944927b5bf9d632dc7, type: 3}
+      propertyPath: stateImgs.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: 0596c55c09cfe5849918aa3c5efc2eac,
+        type: 3}
+    - target: {fileID: 87209615, guid: 2623132e2f6fb2944927b5bf9d632dc7, type: 3}
+      propertyPath: stateImgs.Array.data[4]
+      value: 
+      objectReference: {fileID: 21300000, guid: 2b58135fe96e72f4a98fb4c94c53ab76,
+        type: 3}
+    - target: {fileID: 87209615, guid: 2623132e2f6fb2944927b5bf9d632dc7, type: 3}
+      propertyPath: stateImgs.Array.data[5]
+      value: 
+      objectReference: {fileID: 21300000, guid: 92272097f63936f4eb49006d2fcd46c5,
+        type: 3}
+    - target: {fileID: 87209615, guid: 2623132e2f6fb2944927b5bf9d632dc7, type: 3}
+      propertyPath: stateImgs.Array.data[6]
+      value: 
+      objectReference: {fileID: 21300000, guid: 3d6225018a16a6848895655148801cc3,
+        type: 3}
+    - target: {fileID: 87209615, guid: 2623132e2f6fb2944927b5bf9d632dc7, type: 3}
+      propertyPath: stateImgs.Array.data[7]
+      value: 
+      objectReference: {fileID: 21300000, guid: 5e06f1dbf1df6e1469844d5fee464e51,
+        type: 3}
+    - target: {fileID: 87209615, guid: 2623132e2f6fb2944927b5bf9d632dc7, type: 3}
+      propertyPath: stateImgs.Array.data[8]
+      value: 
+      objectReference: {fileID: 21300000, guid: f0ee25e9cfb0bcf4da19ae1ec8425389,
+        type: 3}
+    - target: {fileID: 87209615, guid: 2623132e2f6fb2944927b5bf9d632dc7, type: 3}
+      propertyPath: stateImgs.Array.data[9]
+      value: 
+      objectReference: {fileID: 21300000, guid: a496e97bd9024a6408f36b607b2606c6,
+        type: 3}
     - target: {fileID: 5157772019722329288, guid: 2623132e2f6fb2944927b5bf9d632dc7,
         type: 3}
       propertyPath: m_Name
