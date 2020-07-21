@@ -88,6 +88,12 @@ public class Obj_Knife : MonoBehaviour
         target.GetComponent<Block_Break>().Hit();
     }
 
+    public void Release()
+    {
+        rb.constraints = RigidbodyConstraints2D.None;
+        rb.gravityScale = 1;
+    }
+
     void OnBecameInvisible() 
     {
         Destroy(this.gameObject);

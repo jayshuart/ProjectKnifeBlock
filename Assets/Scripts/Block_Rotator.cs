@@ -6,6 +6,11 @@ public class Block_Rotator : MonoBehaviour
 {
     [SerializeField] private AnimationCurve rotationCurve;
     [SerializeField] private float rotationSpeed;
+    public float RotationSpeed 
+    { 
+        get { return rotationSpeed; }
+        set { rotationSpeed = value; }
+    }
     [SerializeField] private bool invertRoationCurve;
 
     private float animTime = 0;

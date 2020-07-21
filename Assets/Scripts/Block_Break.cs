@@ -5,6 +5,7 @@ using UnityEngine;
 public class Block_Break : MonoBehaviour
 {
     [SerializeField] private Sprite[] stateImgs;
+    [SerializeField] private GameObject[] shardPrefabs;
     [SerializeField] private ParticleSystem woodParticles;
 
     [SerializeField] private float health = 100; //default 100, can chnage in editor
@@ -43,12 +44,17 @@ public class Block_Break : MonoBehaviour
         ChangeState(stateIndex + newStates);
 
         StartCoroutine(squish());
+
+        if(health <= 0)
+        {
+            Shatter();
+        }
     }
 
     IEnumerator squish()
     {
         Vector3 originalScale = this.transform.localScale;
-        
+
         //squish over time
         float scaleFactor = .9f;
         Vector3 squished = new Vector3(this.transform.localScale.x * scaleFactor, this.transform.localScale.y * scaleFactor, this.transform.localScale.z * scaleFactor);
@@ -69,5 +75,29 @@ public class Block_Break : MonoBehaviour
         SpriteRenderer spriteRend = this.gameObject.GetComponent<SpriteRenderer>();
         spriteRend.sprite = stateImgs[stateIndex]; 
 
+    }
+
+    private void Shatter()
+    {
+        //stop rotating
+        this.gameObject.GetComponent<Block_Rotator>().RotationSpeed = 0;
+
+        //hide block asset
+        this.gameObject.GetComponent<SpriteRenderer>().sprite = null;
+        this.gameObject.GetComponent<CircleCollider2D>().enabled = false;
+
+        //create all the shards at the block pos, with current rotation
+        foreach(GameObject shard in shardPrefabs)
+        {
+            //create shard
+            Instantiate(shard, this.gameObject.transform.position, this.gameObject.transform.rotation);
+        }
+
+        //unlock all the knives imbded in block so they fall
+        Obj_Knife[] knives = this.gameObject.GetComponentsInChildren<Obj_Knife>();
+        foreach(Obj_Knife knife in knives)
+        {
+            knife.Release();
+        }
     }
 }
