@@ -40,14 +40,29 @@ public class Block_Break : MonoBehaviour
         dmgTaken = health - dmgTaken;
 
         int newStates = Mathf.FloorToInt(dmgTaken / damageStep);
-        Debug.Log(newStates);
         ChangeState(stateIndex + newStates);
+
+        StartCoroutine(squish());
+    }
+
+    IEnumerator squish()
+    {
+        Vector3 originalScale = this.transform.localScale;
+        
+        //squish over time
+        float scaleFactor = .9f;
+        Vector3 squished = new Vector3(this.transform.localScale.x * scaleFactor, this.transform.localScale.y * scaleFactor, this.transform.localScale.z * scaleFactor);
+        this.transform.localScale = Vector3.Lerp(this.transform.localScale, squished, Time.deltaTime * 10);
+
+        yield return new WaitForSeconds(.15f);
+
+       this.transform.localScale = originalScale; //Vector3.Lerp(this.transform.localScale, new Vector3(1, 1, 1), Time.deltaTime * 10);
     }
 
     public void ChangeState(int newState)
     {
         //up state index
-        if(newState > stateImgs.Length - 1 || newState == stateIndex) { return; } //leave if weve maxed out
+        if(newState < 0 || newState == stateIndex) { return; } //leave if weve maxed out
         stateIndex = newState;
 
         //chnage sprite of block
