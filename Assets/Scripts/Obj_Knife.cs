@@ -91,7 +91,7 @@ public class Obj_Knife : MonoBehaviour
     public void Release()
     {
         rb.constraints = RigidbodyConstraints2D.None;
-        rb.gravityScale = 1;
+        rb.gravityScale = Random.Range(2, 4);
     }
 
     void OnBecameInvisible() 

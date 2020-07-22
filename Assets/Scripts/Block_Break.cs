@@ -90,7 +90,11 @@ public class Block_Break : MonoBehaviour
         foreach(GameObject shard in shardPrefabs)
         {
             //create shard
-            Instantiate(shard, this.gameObject.transform.position, this.gameObject.transform.rotation);
+            GameObject newShard = Instantiate(shard, this.gameObject.transform.position, this.gameObject.transform.rotation);
+
+            //apply a force on it to make the break mroe exciting
+            Vector2 bumpForce = new Vector2(Random.Range(-200, 200), Random.Range(-200, 200));
+            newShard.GetComponent<Rigidbody2D>().AddForce(bumpForce);
         }
 
         //unlock all the knives imbded in block so they fall

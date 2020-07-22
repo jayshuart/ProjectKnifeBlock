@@ -5382,7 +5382,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e4a18f8e3ff1c548a0a3372a88906d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knives: 10
+  knives: 3
   score: 0
   knifeSpawn: {fileID: 717303297}
   knifePrefab: {fileID: 528259872898274515, guid: 426168ffa93da3a4b84bbb38b5c89892,
