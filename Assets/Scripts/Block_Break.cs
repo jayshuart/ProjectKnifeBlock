@@ -103,5 +103,8 @@ public class Block_Break : MonoBehaviour
         {
             knife.Release();
         }
+
+        //find gm and run the win state
+        GameObject.Find("GameManager").GetComponent<GameManager>().Win();
     }
 }

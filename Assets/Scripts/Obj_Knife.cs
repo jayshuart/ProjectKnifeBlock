@@ -29,6 +29,9 @@ public class Obj_Knife : MonoBehaviour
         //get collider and make inactive at first - will bre reenabled when thrown
         col = this.GetComponent<BoxCollider2D>();
         col.enabled = false;
+
+        //float while we wait to be thrown
+        StartCoroutine(hover());
         
     }
 
@@ -94,6 +97,40 @@ public class Obj_Knife : MonoBehaviour
         rb.gravityScale = Random.Range(2, 4);
     }
 
+    IEnumerator hover()
+    {   
+        float hoverDuration = .5f;
+        int hoverDir = 1;
+        float moveDist = .5f;
+
+        while(!moving && !thrown)
+        {
+            hoverDuration -= Time.deltaTime * 8;
+            float currentY = this.transform.localPosition.y;
+
+            if(hoverDuration > 0 && hoverDir == 1)
+            {
+                currentY += moveDist * Time.deltaTime;
+                this.transform.localPosition = new Vector3(this.transform.localPosition.x, currentY, this.transform.localPosition.z);
+            }
+            else if(hoverDuration > 0 && hoverDir == -1)
+            {
+                currentY -= moveDist * Time.deltaTime;
+                this.transform.localPosition = new Vector3(this.transform.localPosition.x, currentY, this.transform.localPosition.z);
+            }
+            else
+            {
+                hoverDuration = 3f;
+                hoverDir *= -1;
+                //yield return new WaitForSeconds(3f);
+            }
+
+            yield return null;
+        }
+    }
+    
+    
+    //clean up if offscrean
     void OnBecameInvisible() 
     {
         Destroy(this.gameObject);

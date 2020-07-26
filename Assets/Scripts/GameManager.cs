@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject targetBlock;
     private Obj_Knife currentKnife;
     public bool debug_infiniteKnives = false; //toggle for if we get extar knives past level limit
+    [SerializeField] ParticleSystem sparkleParticles;
 
     // Start is called before the first frame update
     void Start()
@@ -49,5 +50,11 @@ public class GameManager : MonoBehaviour
 
         //spawn new knife
         spawnKnife();
+    }
+
+    public void Win()
+    {
+        //play fun sparkles
+        sparkleParticles.Play();
     }
 }

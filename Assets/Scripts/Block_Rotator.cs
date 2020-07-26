@@ -28,7 +28,7 @@ public class Block_Rotator : MonoBehaviour
         animTime += Time.deltaTime;
         float dr = rotationCurve.Evaluate(animTime); //chnage in rotation (delta rotation)
 
-        dr *= rotationSpeed;
+        dr *= rotationSpeed * Time.deltaTime;
         dr = invertRoationCurve ? dr : dr * -1;
 
         this.transform.Rotate(0, 0, dr);
