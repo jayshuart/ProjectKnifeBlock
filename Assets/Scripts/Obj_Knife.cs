@@ -93,6 +93,7 @@ public class Obj_Knife : MonoBehaviour
             Obj_Knife other = col.gameObject.GetComponent<Obj_Knife>();
             if(other != null && other.thrown)
             {
+                rb.AddTorque(350);
                 rb.gravityScale = 2;
                 moving = false;
             }
