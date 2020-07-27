@@ -124,6 +124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   throwSpeed: 35
+  gm: {fileID: 0}
 --- !u!50 &2501560245174295931
 Rigidbody2D:
   serializedVersion: 4

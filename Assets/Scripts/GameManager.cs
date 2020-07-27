@@ -27,18 +27,19 @@ public class GameManager : MonoBehaviour
     {
     }
 
-    private void spawnKnife()
+    public void spawnKnife()
     {
         //check if we have knives to even throw, decriment or exit
-        if(knives < 0 && !debug_infiniteKnives) { return; }
+        if(( currentKnife == null || knives < 0 ) && !debug_infiniteKnives) { return; }
         knives--;
 
         //instantiate new knife, set as current
         GameObject newKnife = Instantiate(knifePrefab, knifeSpawn);
         currentKnife = newKnife.GetComponent<Obj_Knife>();
 
-        //set its target
+        //set its target and gm
         currentKnife.target = targetBlock;
+        currentKnife.gm = this;
     }
 
     public void throwKnife()
@@ -47,9 +48,6 @@ public class GameManager : MonoBehaviour
 
         currentKnife.throwKnife();
         currentKnife = null; //clear it bc its been thrown
-
-        //spawn new knife
-        spawnKnife();
     }
 
     public void Win()

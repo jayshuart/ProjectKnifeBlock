@@ -13,6 +13,8 @@ public class Obj_Knife : MonoBehaviour
     private bool moving;
     private bool thrown;
 
+    public GameManager gm;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,9 +32,29 @@ public class Obj_Knife : MonoBehaviour
         col = this.GetComponent<BoxCollider2D>();
         col.enabled = false;
 
+        //spawn in
+        StartCoroutine(spawnEffect());
+
         //float while we wait to be thrown
         StartCoroutine(hover());
         
+    }
+
+    IEnumerator spawnEffect()
+    {
+        //get spriet rednerers colour attrbiute
+        SpriteRenderer spr = this.gameObject.GetComponent<SpriteRenderer>();
+        Color whiteClear = new Color(1, 1, 1, 0);
+        spr.color = whiteClear;
+        float duration = 0f;
+        while(spr.color.a < 100)
+        {
+            duration += Time.deltaTime * 3;
+            float progress = duration / .65f;
+            spr.color = Color.Lerp(whiteClear, Color.white, progress);
+            yield return null;
+        }
+        yield return null;
     }
 
     // Update is called once per frame
@@ -81,7 +103,8 @@ public class Obj_Knife : MonoBehaviour
         moving = false;
         thrown = true;
 
-        //this.transform.parent = target.transform;
+        //tell game we need a new knife, and parent this one to the block
+        gm.spawnKnife();
         this.transform.SetParent(target.transform, true);
 
         //lock this knife
@@ -133,6 +156,10 @@ public class Obj_Knife : MonoBehaviour
     //clean up if offscrean
     void OnBecameInvisible() 
     {
+        //tell game it needs a new knife
+        //gm.spawnKnife();
+
+        //delet this one bc its out of bounds
         Destroy(this.gameObject);
     }
 }
