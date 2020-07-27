@@ -6,13 +6,13 @@ public class GameManager : MonoBehaviour
 {
 
     [SerializeField] private int knives;
+    [SerializeField] private UI_Tokens knifeToken_parent;
     public int Knives { get{ return knives; } }
     [SerializeField] private float score;
     [SerializeField] private Transform knifeSpawn;
     [SerializeField] private GameObject knifePrefab;
     [SerializeField] private GameObject targetBlock;
-    private Obj_Knife currentKnife;
-    public bool debug_infiniteKnives = false; //toggle for if we get extar knives past level limit
+    private Obj_Knife currentKnife = null;
     [SerializeField] ParticleSystem sparkleParticles;
 
     // Start is called before the first frame update
@@ -20,6 +20,9 @@ public class GameManager : MonoBehaviour
     {
         //spawn inital knife
         spawnKnife();
+
+        //init tokens
+        knifeToken_parent.initTokens(knives - 1);
     }
 
     // Update is called once per frame
@@ -30,8 +33,11 @@ public class GameManager : MonoBehaviour
     public void spawnKnife()
     {
         //check if we have knives to even throw, decriment or exit
-        if(( currentKnife == null || knives < 0 ) && !debug_infiniteKnives) { return; }
+        if(( currentKnife != null || knives < 0 )) { return; }
         knives--;
+
+        //update ui
+        knifeToken_parent.useToken();
 
         //instantiate new knife, set as current
         GameObject newKnife = Instantiate(knifePrefab, knifeSpawn);
