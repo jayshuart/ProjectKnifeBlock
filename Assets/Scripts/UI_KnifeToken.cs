@@ -22,7 +22,8 @@ public class UI_KnifeToken : MonoBehaviour
     void Start()
     {
         img = this.GetComponent<Image>();
-        setState(isUsed);
+        isUsed = true;
+        //setState(isUsed);
     }
 
     // Update is called once per frame
@@ -33,6 +34,7 @@ public class UI_KnifeToken : MonoBehaviour
 
     private void setState(bool isUsed)
     {
+        if(img == null) { img = this.GetComponent<Image>(); }
         if(!isUsed)
         {
             img.color = availableState;
@@ -45,6 +47,7 @@ public class UI_KnifeToken : MonoBehaviour
 
     public void hide()
     {
+        if(img == null) { img = this.GetComponent<Image>(); }
         img.color = Color.clear;
     }
 }
