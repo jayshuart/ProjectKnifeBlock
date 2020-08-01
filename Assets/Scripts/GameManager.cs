@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     private Obj_Knife currentKnife = null;
     [SerializeField] private ParticleSystem sparkleParticles;
     [SerializeField] private ParticleSystem woodParticles;
+    [SerializeField] private Animator winAnim;
 
     // Start is called before the first frame update
     void Start()
@@ -58,17 +59,40 @@ public class GameManager : MonoBehaviour
 
     public void Win()
     {
-        //play fun sparkles
-        sparkleParticles.Play();
+        //do win effects
+        StartCoroutine(payoff());
 
+        //update level data
         levelManager.nextLevel();
 
+        //trigger next round
         StartCoroutine(delayedNextRound());
+    }
+
+    IEnumerator payoff()
+    {
+        //play fun sparkles and win banner
+        sparkleParticles.Play();
+
+        //wait a second
+        yield return new WaitForSeconds(.15f);
+
+        //show banner
+        winAnim.gameObject.SetActive(true);
+        winAnim.Play("winsBanner");
     }
 
     IEnumerator delayedNextRound()
     {
-        yield return new WaitForSeconds(6f);
+        //wait
+        yield return new WaitForSeconds(1f);
+
+        //clear win banner
+        winAnim.Play("winsBanner_exit");
+        yield return new WaitForSeconds(1f);
+        winAnim.gameObject.SetActive(false);
+
+        //start new round
         prepRound();
     }
 
