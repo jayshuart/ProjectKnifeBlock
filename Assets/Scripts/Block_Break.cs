@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Block_Break : MonoBehaviour
 {
+    private bool initalized = false;
     [SerializeField] private Sprite[] stateImgs;
     [SerializeField] private GameObject[] shardPrefabs;
     [SerializeField] private ParticleSystem woodParticles;
@@ -17,9 +18,20 @@ public class Block_Break : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
+    }
+
+    public void init(int pKnives, ParticleSystem pWoodParticles)
+    {
+        //set states and breaking
         stateIndex = stateImgs.Length - 1;
-        damageStep = health / GameObject.Find("GameManager").GetComponent<GameManager>().Knives;
+        damageStep = health / pKnives;
         breakStep = health / stateImgs.Length;
+
+        //set wood
+        woodParticles = pWoodParticles;
+
+        initalized = true;
     }
 
     // Update is called once per frame
@@ -30,6 +42,8 @@ public class Block_Break : MonoBehaviour
 
     public void Hit()
     {
+        if(!initalized) { return; }
+
         //run particle effect
         woodParticles.Play();
 

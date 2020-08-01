@@ -139,7 +139,7 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.01
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 34
@@ -148,7 +148,7 @@ MonoBehaviour:
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
-      value: 0.01
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 34
@@ -158,8 +158,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  rotationSpeed: 25
-  invertRoationCurve: 0
+  rotationSpeed: 120
+  invertRotation: 0
 --- !u!114 &87209615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,13 +173,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateImgs:
-  - {fileID: 21300000, guid: a496e97bd9024a6408f36b607b2606c6, type: 3}
-  - {fileID: 21300000, guid: f0ee25e9cfb0bcf4da19ae1ec8425389, type: 3}
-  - {fileID: 21300000, guid: 5e06f1dbf1df6e1469844d5fee464e51, type: 3}
-  - {fileID: 21300000, guid: 3d6225018a16a6848895655148801cc3, type: 3}
-  - {fileID: 21300000, guid: 92272097f63936f4eb49006d2fcd46c5, type: 3}
-  - {fileID: 21300000, guid: 2b58135fe96e72f4a98fb4c94c53ab76, type: 3}
-  - {fileID: 21300000, guid: 0596c55c09cfe5849918aa3c5efc2eac, type: 3}
-  - {fileID: 21300000, guid: 48ad5362ef5b33045a2b7bb4b854eba5, type: 3}
-  - {fileID: 21300000, guid: 666620ab616dca54abf8e1b993f0827f, type: 3}
   - {fileID: 21300000, guid: f344b2c9224089f469394d5fc0823cf2, type: 3}
+  - {fileID: 21300000, guid: 666620ab616dca54abf8e1b993f0827f, type: 3}
+  - {fileID: 21300000, guid: 48ad5362ef5b33045a2b7bb4b854eba5, type: 3}
+  - {fileID: 21300000, guid: 0596c55c09cfe5849918aa3c5efc2eac, type: 3}
+  - {fileID: 21300000, guid: 2b58135fe96e72f4a98fb4c94c53ab76, type: 3}
+  - {fileID: 21300000, guid: 92272097f63936f4eb49006d2fcd46c5, type: 3}
+  - {fileID: 21300000, guid: 3d6225018a16a6848895655148801cc3, type: 3}
+  - {fileID: 21300000, guid: 5e06f1dbf1df6e1469844d5fee464e51, type: 3}
+  - {fileID: 21300000, guid: f0ee25e9cfb0bcf4da19ae1ec8425389, type: 3}
+  - {fileID: 21300000, guid: a496e97bd9024a6408f36b607b2606c6, type: 3}
+  shardPrefabs:
+  - {fileID: 4523893743318567029, guid: 49ada2f370a7ddb4fa3743fe45816709, type: 3}
+  - {fileID: 923219340410752908, guid: 128ae3f77c6c3ed4d8b761521c21ad5b, type: 3}
+  - {fileID: 7647618389102583810, guid: 00982d1c6501e3b40bb495bb3f665868, type: 3}
+  woodParticles: {fileID: 0}
+  health: 100

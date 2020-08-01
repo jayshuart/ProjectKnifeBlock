@@ -30,6 +30,7 @@ public class UI_Tokens : MonoBehaviour
         }
 
         totalTokensWeighted = knives;
+        usedTokensWeighted = 0f;
 
         //show tokens based on number of knives, overflow should be hidden
         for(int t = 0; t < tokens.Length; t++)
@@ -53,7 +54,7 @@ public class UI_Tokens : MonoBehaviour
     public void useToken()
     {
         if(!intialized) { return; }
-        
+
         //calc shown tokens (floored to an int) 
         int shownTokens = Mathf.FloorToInt(usedTokensWeighted);
 

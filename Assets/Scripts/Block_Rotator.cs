@@ -11,7 +11,7 @@ public class Block_Rotator : MonoBehaviour
         get { return rotationSpeed; }
         set { rotationSpeed = value; }
     }
-    [SerializeField] private bool invertRoationCurve;
+    [SerializeField] private bool invertRotation;
 
     private float animTime = 0;
 
@@ -29,12 +29,23 @@ public class Block_Rotator : MonoBehaviour
         float dr = rotationCurve.Evaluate(animTime); //chnage in rotation (delta rotation)
 
         dr *= rotationSpeed * Time.deltaTime;
-        dr = invertRoationCurve ? dr : dr * -1;
+        dr = invertRotation ? dr : dr * -1;
 
         this.transform.Rotate(0, 0, dr);
 
         //course correct for pos being changed by adding children
         // ------------------------------------------------------------- *** LOOK INTO THIS FOR A PROPER SOLUTION YOU DINGUS ***
        // this.transform.position = new Vector3(0, 3, -1);
+    }
+
+    public void init(AnimationCurve pRotationCurve, float pRotationSpeed, bool pInvertRotation)
+    {
+        //set passed values
+        rotationCurve = pRotationCurve;
+        rotationSpeed = pRotationSpeed;
+        invertRotation = pInvertRotation;
+
+        //set own values
+        animTime = 0;
     }
 }
