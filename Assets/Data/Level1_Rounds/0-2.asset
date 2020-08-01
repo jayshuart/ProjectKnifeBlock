@@ -38,4 +38,4 @@ MonoBehaviour:
     m_RotationOrder: 4
   rotationSpeed: 120
   invertRotationCurve: 0
-  knives: 6
+  knives: 5

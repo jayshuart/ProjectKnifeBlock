@@ -9,20 +9,21 @@ public class Block_Break : MonoBehaviour
     [SerializeField] private GameObject[] shardPrefabs;
     [SerializeField] private ParticleSystem woodParticles;
 
-    [SerializeField] private float health = 100; //default 100, can chnage in editor
+    private float health;
     private int stateIndex;
-    private float damageStep;  //how much health is cut per hit
-    private float breakStep;  //how much health is needed to change break state
+    public float damageStep;  //how much health is cut per hit
+    public float breakStep;  //how much health is needed to change break state
     
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
     }
 
     public void init(int pKnives, ParticleSystem pWoodParticles)
     {
+        health = pKnives;
+
         //set states and breaking
         stateIndex = stateImgs.Length - 1;
         damageStep = health / pKnives;

@@ -28,6 +28,8 @@ public class UI_Tokens : MonoBehaviour
             notOne_to_one = true;
             tokenWeight = knives / tokens.Length;
         }
+        else
+        { tokenWeight = 1; }
 
         totalTokensWeighted = knives;
         usedTokensWeighted = 0f;
@@ -35,7 +37,7 @@ public class UI_Tokens : MonoBehaviour
         //show tokens based on number of knives, overflow should be hidden
         for(int t = 0; t < tokens.Length; t++)
         {
-            if(t <= knives)
+            if(t < knives)
             { 
                 tokens[t].IsUsed = false;
             }

@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
     public void spawnKnife()
     {
         //check if we have knives to even throw, decriment or exit
-        if(( currentKnife != null || knives < 0 )) { return; }
+        if(( currentKnife != null || knives <= 0 )) { return; }
         knives--;
 
         //update ui
@@ -102,32 +102,20 @@ public class GameManager : MonoBehaviour
         if(targetBlock != null)
         { Destroy(targetBlock); }
 
-        //make new block at target coords
+        //get current round data from level manager
+        RoundData round = levelManager.getRound();
+        knives = round.Knives;
+
+        //make new block
         targetBlock = Instantiate(blockPrefab, blockSpawn.position, blockSpawn.rotation);
-
-        //parse round data into new block, and initalize
-        parseRoundData();
-
-        //initalize block break
         targetBlock.GetComponent<Block_Break>().init(knives, woodParticles);
-
-        //spawn inital knife
-        spawnKnife();
+        targetBlock.GetComponent<Block_Rotator>().init(round.RotationCurve, round.RotationSpeed, round.InvertRotationCurve);
 
         //init tokens
         knifeToken_parent.initTokens(knives);
-    }
 
-    private void parseRoundData()
-    {
-        //get current round data from level manager
-        RoundData round = levelManager.getRound();
-
-        //set knives
-        knives = round.Knives;
-
-        //set rotator settings
-        Block_Rotator rotator = blockPrefab.GetComponent<Block_Rotator>();
-        rotator.init(round.RotationCurve, round.RotationSpeed, round.InvertRotationCurve);
+        //spawn inital knife
+        spawnKnife();
+       
     }
 }

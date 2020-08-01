@@ -145,7 +145,7 @@ MonoBehaviour:
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.33333334
+      outWeight: 0
     - serializedVersion: 3
       time: 1
       value: 1
@@ -153,12 +153,12 @@ MonoBehaviour:
       outSlope: 0
       tangentMode: 34
       weightedMode: 0
-      inWeight: 0.33333334
+      inWeight: 0
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  rotationSpeed: 120
+  rotationSpeed: 0
   invertRotation: 0
 --- !u!114 &87209615
 MonoBehaviour:
@@ -189,3 +189,5 @@ MonoBehaviour:
   - {fileID: 7647618389102583810, guid: 00982d1c6501e3b40bb495bb3f665868, type: 3}
   woodParticles: {fileID: 0}
   health: 100
+  damageStep: 0
+  breakStep: 0

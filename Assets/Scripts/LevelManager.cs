@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-    [SerializeField] private int currentRound;
-    [SerializeField] private int currentLevel;
+    [SerializeField] private int currentRound = 0;
+    [SerializeField] private int currentLevel = 0;
 
     [SerializeField] private LevelData[] levels;
 
     // Start is called before the first frame update
     void Start()
     {
-        currentLevel = 0;
-        currentRound = 0;
+        //currentLevel = 0;
+        //currentRound = 0;
     }
 
     // Update is called once per frame
@@ -26,12 +26,12 @@ public class LevelManager : MonoBehaviour
     {
         currentRound = (currentRound + 1);
 
-        if(currentRound > levels[currentLevel].Rounds.Length)
+        if(currentRound > levels[currentLevel].Rounds.Length - 1)
         {
             currentRound = 0;
             currentLevel++;
 
-            if(currentLevel > levels.Length)
+            if(currentLevel > levels.Length - 1)
             { currentLevel--; }
         }
     }

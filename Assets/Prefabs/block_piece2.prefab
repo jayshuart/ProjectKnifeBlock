@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 923219340410751090}
   - component: {fileID: 923219340410751091}
   - component: {fileID: 923219340410751088}
+  - component: {fileID: -7204761283326204483}
   m_Layer: 0
   m_Name: block_piece2
   m_TagString: Untagged
@@ -129,3 +130,15 @@ EdgeCollider2D:
   - {x: -0.055601, y: 0.36264348}
   - {x: -0.45572764, y: -0.7198715}
   - {x: -1.9119096, y: -1.666013}
+--- !u!114 &-7204761283326204483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 923219340410752908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36f01f8e144866f4c8f80824ce641912, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
