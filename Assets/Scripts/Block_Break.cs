@@ -11,23 +11,22 @@ public class Block_Break : MonoBehaviour
 
     private float health;
     private int stateIndex;
-    public float damageStep;  //how much health is cut per hit
+    private float stateUnbound; //state index, but not a whole number so we can account for >20 knives
     public float breakStep;  //how much health is needed to change break state
     
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
     }
 
     public void init(int pKnives, ParticleSystem pWoodParticles)
     {
-        health = pKnives;
+        health = stateImgs.Length; //pKnives;
 
         //set states and breaking
         stateIndex = stateImgs.Length - 1;
-        damageStep = health / pKnives;
-        breakStep = health / stateImgs.Length;
+        breakStep = (float) stateImgs.Length / pKnives;
 
         //set wood
         woodParticles = pWoodParticles;
@@ -48,19 +47,15 @@ public class Block_Break : MonoBehaviour
         //run particle effect
         woodParticles.Play();
 
-        //inflict damage
-        health -= damageStep;
+        //inflict damage (1 knife)
+        health -= breakStep;
 
-        //check if enough damage ahs been taken to goto next state
-        float dmgTaken = damageStep * stateIndex;
-        dmgTaken = health - dmgTaken;
-
-        int newStates = Mathf.FloorToInt(dmgTaken / damageStep);
-        ChangeState(stateIndex + newStates);
+        int newStates = Mathf.FloorToInt(health);
+        ChangeState(newStates);
 
         StartCoroutine(squish());
 
-        if(health <= 0)
+        if(health < 1) //not <=1 to account for rounding errors
         {
             Shatter();
         }

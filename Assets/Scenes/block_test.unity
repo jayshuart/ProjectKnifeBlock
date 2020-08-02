@@ -121,12 +121,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!4 &87209619 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5157772019722329303, guid: 2623132e2f6fb2944927b5bf9d632dc7,
-    type: 3}
-  m_PrefabInstance: {fileID: 5157772019769354821}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &115225342
 GameObject:
   m_ObjectHideFlags: 0
@@ -7364,10 +7358,10 @@ MonoBehaviour:
   knifeSpawn: {fileID: 717303297}
   knifePrefab: {fileID: 528259872898274515, guid: 426168ffa93da3a4b84bbb38b5c89892,
     type: 3}
-  blockSpawn: {fileID: 87209619}
+  blockSpawn: {fileID: 2059384673}
   blockPrefab: {fileID: 5157772019722329288, guid: 2623132e2f6fb2944927b5bf9d632dc7,
     type: 3}
-  targetBlock: {fileID: 0}
+  targetBlock: {fileID: 1737414169}
   sparkleParticles: {fileID: 1910702381}
   woodParticles: {fileID: 439458371}
   winAnim: {fileID: 2101755237}
@@ -7979,6 +7973,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   availableState: {r: 1, g: 1, b: 1, a: 0.6313726}
   isUsedState: {r: 1, g: 1, b: 1, a: 0.09803922}
+--- !u!1 &1737414169 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5157772019722329288, guid: 2623132e2f6fb2944927b5bf9d632dc7,
+    type: 3}
+  m_PrefabInstance: {fileID: 5157772019769354821}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1910702379
 GameObject:
   m_ObjectHideFlags: 0
@@ -13098,7 +13098,7 @@ PrefabInstance:
     - target: {fileID: 5157772019722329288, guid: 2623132e2f6fb2944927b5bf9d632dc7,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5157772019722329303, guid: 2623132e2f6fb2944927b5bf9d632dc7,
         type: 3}
