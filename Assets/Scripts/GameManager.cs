@@ -4,11 +4,19 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    enum GAME_STATE {
+        UNSET,
+        PLAY,
+        WIN,
+        FAIL
+    }
+
+    private GAME_STATE gameState = GAME_STATE.UNSET;
     [SerializeField] private LevelManager levelManager;
     [SerializeField] private int knives;
     [SerializeField] private UI_Tokens knifeToken_parent;
     public int Knives { get{ return knives; } }
-    [SerializeField] private float score;
+    [SerializeField] private int score;
     [SerializeField] private Transform knifeSpawn;
     [SerializeField] private GameObject knifePrefab;
 
@@ -19,6 +27,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private ParticleSystem sparkleParticles;
     [SerializeField] private ParticleSystem woodParticles;
     [SerializeField] private Animator winAnim;
+    [SerializeField] private FailDisplay failScreen;
 
     // Start is called before the first frame update
     void Start()
@@ -57,12 +66,32 @@ public class GameManager : MonoBehaviour
         currentKnife = null; //clear it bc its been thrown
     }
 
+    public void Fail()
+    {
+        //update game state so this is only triggered once
+       if(gameState == GAME_STATE.FAIL) { return; }
+       gameState = GAME_STATE.FAIL;
+
+        //todo - save to highscores
+
+        //todo - do fail effect
+        failScreen.setScore(score);
+        failScreen.show();
+
+        //todo - trigger restarting the scene as to restart the game fresh
+        
+    }
+
     public void Win()
     {
+        if(gameState == GAME_STATE.WIN) { return; }
+        gameState = GAME_STATE.WIN;
+
         //do win effects
         StartCoroutine(payoff());
 
-        //update level data
+        //update level data and scoring
+        score += 100; //todo - 10 per round, 100 on level complete
         levelManager.nextLevel();
 
         //trigger next round
@@ -117,5 +146,6 @@ public class GameManager : MonoBehaviour
         //spawn inital knife
         spawnKnife();
        
+       gameState = GAME_STATE.PLAY;
     }
 }

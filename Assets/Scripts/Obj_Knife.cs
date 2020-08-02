@@ -96,6 +96,9 @@ public class Obj_Knife : MonoBehaviour
                 rb.AddTorque(350);
                 rb.gravityScale = 2;
                 moving = false;
+
+                //trigger fail state
+                gm.Fail();
             }
             
             return;
@@ -157,9 +160,6 @@ public class Obj_Knife : MonoBehaviour
     //clean up if offscrean
     void OnBecameInvisible() 
     {
-        //tell game it needs a new knife
-        //gm.spawnKnife();
-
         //delet this one bc its out of bounds
         Destroy(this.gameObject);
     }
