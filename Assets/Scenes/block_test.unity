@@ -5435,6 +5435,7 @@ GameObject:
   m_Component:
   - component: {fileID: 458567504}
   - component: {fileID: 458567505}
+  - component: {fileID: 458567506}
   m_Layer: 5
   m_Name: FailScreen
   m_TagString: Untagged
@@ -5481,6 +5482,26 @@ MonoBehaviour:
   highscore: {fileID: 1822486285}
   score_header: {fileID: 1507741824}
   score: {fileID: 1458098811}
+  anim: {fileID: 458567506}
+--- !u!95 &458567506
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 458567503}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2443106a456f79546a5848306d7cf489, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &477919116
 GameObject:
   m_ObjectHideFlags: 0
@@ -6011,7 +6032,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0.00010681, y: 133}
+  m_AnchoredPosition: {x: 0.00010681, y: 138}
   m_SizeDelta: {x: 293.27664, y: 156.96024}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &616521210
@@ -7954,7 +7975,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 66.649}
+  m_AnchoredPosition: {x: 0, y: 87}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1458098811
