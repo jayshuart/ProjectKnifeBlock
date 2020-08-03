@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6de6cf13571df5a4d83edcba0b7765d3, type: 3}
-  m_Name: LevelData_0
+  m_Name: LevelData0
   m_EditorClassIdentifier: 
   rounds:
   - {fileID: 11400000, guid: 4b482edaf7d7c63428b0f02f149476b7, type: 2}
   - {fileID: 11400000, guid: ab4e74e09d92321478a341761cc7ccda, type: 2}
   - {fileID: 11400000, guid: 6ad1b67f6c4122040966b9ebbc26c8a5, type: 2}
   - {fileID: 11400000, guid: aa382dffa8ff7e04eba81873be239888, type: 2}
-  choseRandomly: 0
+  chooseRandomly: 0

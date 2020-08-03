@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6de6cf13571df5a4d83edcba0b7765d3, type: 3}
+  m_Name: LevelData1
+  m_EditorClassIdentifier: 
+  rounds:
+  - {fileID: 11400000, guid: 4d7fc8b33c8116c42be096c6eb8362ce, type: 2}
+  - {fileID: 11400000, guid: 478e2bb5839e54a45b498fa188048d81, type: 2}
+  - {fileID: 11400000, guid: 076dae6d441665d4ebffbeee9754a7c6, type: 2}
+  - {fileID: 11400000, guid: fb8efeceacf6f4a4da2665fee1ae4db3, type: 2}
+  chooseRandomly: 0
