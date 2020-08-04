@@ -96,6 +96,7 @@ public class Obj_Knife : MonoBehaviour
                 rb.AddTorque(350);
                 rb.gravityScale = 2;
                 moving = false;
+                thrown = true;
 
                 //trigger fail state
                 gm.Fail();

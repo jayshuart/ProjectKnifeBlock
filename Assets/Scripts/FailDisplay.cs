@@ -13,6 +13,8 @@ public class FailDisplay : MonoBehaviour
     [SerializeField] private TextMeshProUGUI score;
     [SerializeField] private Animator anim;
     private bool newBest = false;
+    private bool unlocked = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,10 +27,21 @@ public class FailDisplay : MonoBehaviour
         replay();
     }
 
+    IEnumerator delayUnlock()
+    {
+        yield return new WaitForSeconds(.25f);
+        unlocked = true;
+    }
+
+    public void unlock()
+    { 
+        unlocked = true;
+    }
+
     public void replay()
     {
         if(Input.GetMouseButtonDown(0) //we can use this on pc and mobile, as we dont care about any info except for if we have input
-        && score.gameObject.activeSelf)
+        && score.gameObject.activeSelf && unlocked)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }

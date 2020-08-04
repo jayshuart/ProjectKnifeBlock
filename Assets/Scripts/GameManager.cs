@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
     public void spawnKnife()
     {
         //check if we have knives to even throw, decriment or exit
-        if(( currentKnife != null || knives <= 0 )) { return; }
+        if(( currentKnife != null || knives <= 0 ) || gameState == GAME_STATE.FAIL) { return; }
         knives--;
 
         //update ui
@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
     public void Fail()
     {
         //update game state so this is only triggered once
-       if(gameState == GAME_STATE.FAIL) { return; }
+       if(gameState != GAME_STATE.PLAY) { return; }
        gameState = GAME_STATE.FAIL;
 
         //todo - save to highscores
@@ -84,7 +84,7 @@ public class GameManager : MonoBehaviour
 
     public void Win()
     {
-        if(gameState == GAME_STATE.WIN) { return; }
+        if(gameState != GAME_STATE.PLAY) { return; }
         gameState = GAME_STATE.WIN;
 
         //do win effects
