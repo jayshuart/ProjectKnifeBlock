@@ -12,11 +12,37 @@ public class Obj_Knife : MonoBehaviour
     [SerializeField] private float throwSpeed;
     private bool moving;
     private bool thrown;
+    [SerializeField] bool startImbeded = false; //not a thrown knife, starts as a part of the block
 
     public GameManager gm;
 
     // Start is called before the first frame update
     void Start()
+    {
+        if(startImbeded) { initImbeded(); }
+        else { init(); }
+        
+    }
+
+    private void initImbeded()
+    {
+        moving = false;
+        thrown = true;
+
+        if(target != null)
+        {
+            targetCol = target.GetComponent<Collider2D>();
+        }
+
+        //lock knife
+        rb = this.GetComponent<Rigidbody2D>();
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
+
+        //get collider and make inactive at first
+        col = this.GetComponent<BoxCollider2D>();
+    }
+
+    private void init()
     {
         moving = false;
         thrown = false;
@@ -37,7 +63,6 @@ public class Obj_Knife : MonoBehaviour
 
         //float while we wait to be thrown
         StartCoroutine(hover());
-        
     }
 
     IEnumerator spawnEffect()

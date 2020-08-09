@@ -136,7 +136,16 @@ public class GameManager : MonoBehaviour
         knives = round.Knives;
 
         //make new block
-        targetBlock = Instantiate(blockPrefab, blockSpawn.position, blockSpawn.rotation);
+        GameObject blockStyle = round.BlockPrefab;
+        if(blockStyle == null)
+        {
+            targetBlock = Instantiate(blockPrefab, blockSpawn.position, blockSpawn.rotation);
+        }
+        else
+        {
+            targetBlock = Instantiate(blockStyle, blockSpawn.position, blockSpawn.rotation);
+        }
+        
         targetBlock.GetComponent<Block_Break>().init(knives, woodParticles);
         targetBlock.GetComponent<Block_Rotator>().init(round.RotationCurve, round.RotationSpeed, round.InvertRotationCurve);
 

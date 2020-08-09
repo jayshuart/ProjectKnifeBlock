@@ -39,3 +39,4 @@ MonoBehaviour:
   rotationSpeed: 80
   invertRotationCurve: 0
   knives: 2
+  blockPrefab: {fileID: 0}

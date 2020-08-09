@@ -17,4 +17,8 @@ public class RoundData : ScriptableObject
     [SerializeField] private int knives;
     public int Knives
     { get { return knives; } }
+
+    [SerializeField] private GameObject blockPrefab;
+    public GameObject BlockPrefab
+    { get { return blockPrefab; } }
 }
