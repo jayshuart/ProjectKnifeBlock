@@ -8,17 +8,28 @@ public class RoundData : ScriptableObject
     [SerializeField] private AnimationCurve rotationCurve;
     public AnimationCurve RotationCurve
     { get { return rotationCurve; } }
-    [SerializeField] private float rotationSpeed = 120;
+    [SerializeField] protected float rotationSpeed = 120;
     public float RotationSpeed
     { get { return rotationSpeed; } }
     [SerializeField] private bool invertRotationCurve;
     public bool InvertRotationCurve
     { get {return invertRotationCurve; } }
-    [SerializeField] private int knives;
+    [SerializeField] protected int knives;
     public int Knives
     { get { return knives; } }
 
-    [SerializeField] private GameObject blockPrefab;
+    [SerializeField] protected GameObject blockPrefab;
     public GameObject BlockPrefab
     { get { return blockPrefab; } }
+
+    public virtual void init()
+    {
+        //do nothing in base - other like randomround will override
+    }
+
+    public virtual void cleanup()
+    {
+        //do nothing in base - other like randomround will override
+    }
+
 }

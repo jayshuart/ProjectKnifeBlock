@@ -31,6 +31,9 @@ public class Block_Break : MonoBehaviour
         //set wood
         woodParticles = pWoodParticles;
 
+        //if this is off turn it on
+        if(!this.isActiveAndEnabled) { this.enabled = true; }
+
         initalized = true;
     }
 

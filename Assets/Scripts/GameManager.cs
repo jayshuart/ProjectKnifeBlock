@@ -133,6 +133,7 @@ public class GameManager : MonoBehaviour
 
         //get current round data from level manager
         RoundData round = levelManager.getRound();
+        round.init();
         knives = round.Knives;
 
         //make new block
@@ -145,7 +146,7 @@ public class GameManager : MonoBehaviour
         {
             targetBlock = Instantiate(blockStyle, blockSpawn.position, blockSpawn.rotation);
         }
-        
+
         targetBlock.GetComponent<Block_Break>().init(knives, woodParticles);
         targetBlock.GetComponent<Block_Rotator>().init(round.RotationCurve, round.RotationSpeed, round.InvertRotationCurve);
 
@@ -156,5 +157,6 @@ public class GameManager : MonoBehaviour
         spawnKnife();
        
        gameState = GAME_STATE.PLAY;
+       round.cleanup();
     }
 }

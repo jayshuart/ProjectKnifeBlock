@@ -47,5 +47,7 @@ public class Block_Rotator : MonoBehaviour
 
         //set own values
         animTime = 0;
+
+        if(!this.isActiveAndEnabled) { this.enabled = true; }
     }
 }

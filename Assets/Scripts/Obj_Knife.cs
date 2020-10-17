@@ -186,7 +186,10 @@ public class Obj_Knife : MonoBehaviour
     //clean up if offscrean
     void OnBecameInvisible() 
     {
-        //delet this one bc its out of bounds
-        Destroy(this.gameObject);
+        if(!startImbeded)
+        {
+            //delet this one bc its out of bounds
+            Destroy(this.gameObject);
+        }
     }
 }
