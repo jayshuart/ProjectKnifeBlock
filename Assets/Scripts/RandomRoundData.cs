@@ -6,7 +6,7 @@ using UnityEngine;
 public class RandomRoundData : RoundData
 {
     private int imbededKnives;
-    private List<float> distribution;
+    private List<float> distribution; //imbeded knife distribution
     [SerializeField] private GameObject knifePrefab;
     [SerializeField] private AnimationCurve[] curves;
     [SerializeField] private GameObject cleanBlockPrefab;
@@ -27,7 +27,41 @@ public class RandomRoundData : RoundData
 
     private int setKnives()
     {
+        int throwingKnives = 0;
+
         //weighted random for number of knives
+        int chance = Random.Range(0, 100);
+
+        //calc adjustments (like level or imbeded knives)
+        if(difficulty == 0)
+        { throwingKnives = Random.Range(1, 3); }
+        else if(difficulty == 1)
+        { throwingKnives = Random.Range(1, 5); }
+        else if(difficulty == 2)
+        { throwingKnives = Random.Range(3, 7); }
+        else if(difficulty == 3)
+        { throwingKnives = Random.Range(3, 10); }
+        else if(difficulty == 4)
+        { throwingKnives = Random.Range(4, 12); }
+        else if(difficulty == 5)
+        { throwingKnives = Random.Range(5, 20); }
+
+        //special handling for high imbed cases
+        if(imbededKnives >= 19)
+        {
+            throwingKnives = 1;
+        }
+        else if(imbededKnives >= 18)
+        {
+            throwingKnives = 2;
+        }
+        else if(imbededKnives >= 11)
+        {
+            if(throwingKnives > 10)
+            { throwingKnives = Random.Range(difficulty, 10); }
+        }
+
+        knives = throwingKnives;
         return knives;
     }
 
@@ -38,7 +72,7 @@ public class RandomRoundData : RoundData
         //decide if there are gonna be any imbeded knives
         int imbededChance = Random.Range(0, 100);
 
-        if(imbededChance > 75) //no imbed
+        if(imbededChance > 40) //no imbed
         {
             imbededKnives = 0;
         }
@@ -57,13 +91,13 @@ public class RandomRoundData : RoundData
     {
         //most interesting play will prolly be in the 2-4 range, so weight towards that
         int chance = Random.Range(0, 100);
-        if(chance > 90) // 10
+        if(chance > 93) // 10
         { imbededKnives = 1; }
-        else if (chance > 70) //20
+        else if (chance > 72) //20
         { imbededKnives = 2; }
-        else if (chance > 35) //35
+        else if (chance > 37) //35
         { imbededKnives = 3; }
-        else if (chance > 15) //20
+        else if (chance > 18) //20
         { imbededKnives = 4; }
         else if (chance > 5) //10
         { imbededKnives = 5; }
@@ -126,6 +160,7 @@ public class RandomRoundData : RoundData
     {
         //for now
         rotationSpeed = Random.Range(100, 160);
+        rotationSpeed += (10 * difficulty);
 
         //todo: spread speed into divisions, generally increasing as level increases
     }

@@ -22,6 +22,8 @@ public class RoundData : ScriptableObject
     public GameObject BlockPrefab
     { get { return blockPrefab; } }
 
+    public int difficulty = 0;
+
     public virtual void init()
     {
         //do nothing in base - other like randomround will override
@@ -30,6 +32,12 @@ public class RoundData : ScriptableObject
     public virtual void cleanup()
     {
         //do nothing in base - other like randomround will override
+    }
+
+    public void reset()
+    {
+        difficulty = 0;
+        rotationSpeed = 120;
     }
 
 }

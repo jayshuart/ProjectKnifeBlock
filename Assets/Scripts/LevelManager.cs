@@ -5,7 +5,12 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     [SerializeField] private int currentRound = 0;
+    public int CurrentRound
+    { get { return currentRound; } }
+
     [SerializeField] private int currentLevel = 0;
+    public int CurrentLevel
+    { get { return currentLevel; } }
 
     [SerializeField] private LevelData[] levels;
 
@@ -14,6 +19,7 @@ public class LevelManager : MonoBehaviour
     {
         //currentLevel = 0;
         //currentRound = 0;
+        getRound().reset();
     }
 
     // Update is called once per frame
@@ -24,13 +30,17 @@ public class LevelManager : MonoBehaviour
 
     public void nextLevel()
     {
+        //up round
         currentRound = (currentRound + 1);
 
+        //check if we reacht he end of the level
         if(currentRound > levels[currentLevel].Rounds.Length - 1)
         {
+            //reset round for new level, and up current level
             currentRound = 0;
             currentLevel++;
 
+            //stay within bounds for levels
             if(currentLevel > levels.Length - 1)
             { currentLevel--; }
         }
