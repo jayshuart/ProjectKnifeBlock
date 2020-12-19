@@ -36,10 +36,12 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  rotationSpeed: 119
+  rotationSpeed: 151
   invertRotationCurve: 0
-  knives: 5
-  blockPrefab: {fileID: 0}
+  knives: 1
+  blockPrefab: {fileID: 5157772019722329288, guid: 2623132e2f6fb2944927b5bf9d632dc7,
+    type: 3}
+  difficulty: 0
   knifePrefab: {fileID: 7800497730312315353, guid: 610bdffc04464994e9411c03cab9217d,
     type: 3}
   curves: []

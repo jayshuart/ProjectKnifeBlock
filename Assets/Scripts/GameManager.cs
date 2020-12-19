@@ -29,9 +29,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Animator winAnim;
     [SerializeField] private FailDisplay failScreen;
 
+    private bool unlockDifficulty;
+
     // Start is called before the first frame update
     void Start()
     {
+        unlockDifficulty = false;
         prepRound();
     }
 
@@ -123,6 +126,7 @@ public class GameManager : MonoBehaviour
 
         //start new round
         bool upDifficulty = levelManager.CurrentRound == 0 && levelManager.CurrentLevel > 2; //new level? are we past the default levels?
+        if(!unlockDifficulty && upDifficulty) { unlockDifficulty = true; }
         prepRound(upDifficulty);
     }
 
@@ -137,7 +141,7 @@ public class GameManager : MonoBehaviour
         if(increaseDifficulty) { round.difficulty = Mathf.Clamp((round.difficulty + 1), 0, 5); }
 
         //special acse reset for our first random level
-        if(levelManager.CurrentRound == 0 && levelManager.CurrentLevel == 3)
+        if(levelManager.CurrentRound == 0 && levelManager.CurrentLevel == 3 && !unlockDifficulty)
         { round.reset(); }
 
         //initalize round os we can grab data
