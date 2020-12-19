@@ -7,6 +7,7 @@ using TMPro;
 public class FailDisplay : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI bestFlag;
+    [SerializeField] private TextMeshProUGUI title;
     [SerializeField] private TextMeshProUGUI highscore_header;
     [SerializeField] private TextMeshProUGUI highscore;
     [SerializeField] private TextMeshProUGUI score_header;
@@ -56,21 +57,24 @@ public class FailDisplay : MonoBehaviour
     public void setScore(int pScore)
     {
         //todo get current highscore
-        int best = 0;
+        int best = PlayerPrefs.GetInt("knifeblock_best");
 
         //update text
+        title.text = "Try Again";
         score.text = pScore.ToString();
         highscore.text = best.ToString();
 
         //update for if we have a new best
         if(pScore > best)
         {
+            title.text = "New Best";
+            PlayerPrefs.SetInt("knifeblock_best", pScore);
             newBest = true;
 
             //hide best, show new best flag
             highscore.gameObject.SetActive(false);
             highscore_header.gameObject.SetActive(false);
-            bestFlag.gameObject.SetActive(true);
+            //bestFlag.gameObject.SetActive(true);
 
             //make text gold!
             score.color = Color.yellow;
