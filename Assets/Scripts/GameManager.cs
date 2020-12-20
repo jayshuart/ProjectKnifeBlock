@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private ParticleSystem woodParticles;
     [SerializeField] private Animator winAnim;
     [SerializeField] private FailDisplay failScreen;
+    [SerializeField] private WinDisplay winDisplay;
 
     private bool unlockDifficulty;
 
@@ -95,6 +96,7 @@ public class GameManager : MonoBehaviour
 
         //update level data and scoring
         score += 100; //todo - 10 per round, 100 on level complete
+        winDisplay.setScore(score);
         levelManager.nextLevel();
 
         //trigger next round

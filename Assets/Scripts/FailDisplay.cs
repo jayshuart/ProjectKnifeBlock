@@ -57,7 +57,7 @@ public class FailDisplay : MonoBehaviour
     public void setScore(int pScore)
     {
         //todo get current highscore
-        int best = PlayerPrefs.GetInt("knifeblock_best");
+        int best = PlayerPrefs.GetInt("best");
 
         //update text
         title.text = "Try Again";
@@ -68,7 +68,7 @@ public class FailDisplay : MonoBehaviour
         if(pScore > best)
         {
             title.text = "New Best";
-            PlayerPrefs.SetInt("knifeblock_best", pScore);
+            PlayerPrefs.SetInt("best", pScore);
             newBest = true;
 
             //hide best, show new best flag
