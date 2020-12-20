@@ -44,8 +44,16 @@ public class FailDisplay : MonoBehaviour
         if(Input.GetMouseButtonDown(0) //we can use this on pc and mobile, as we dont care about any info except for if we have input
         && score.gameObject.activeSelf && unlocked)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            StartCoroutine(gotoGame());
         }
+    }
+
+    IEnumerator gotoGame()
+    {
+        //wait
+        yield return new WaitForSeconds(.35f);
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void show()
