@@ -1290,7 +1290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentRound: 0
-  currentLevel: 3
+  currentLevel: 0
   levels:
   - {fileID: 11400000, guid: 2fc2f5d40452ad646a856370560d6ad3, type: 2}
   - {fileID: 11400000, guid: 3d876fa266f77b14da98d9d32f3541d1, type: 2}
@@ -6679,6 +6679,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bestFlag: {fileID: 224901186}
+  title: {fileID: 632851894}
   highscore_header: {fileID: 2013796137}
   highscore: {fileID: 1822486285}
   score_header: {fileID: 1507741824}
@@ -6906,7 +6907,7 @@ Camera:
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 3
   m_BackGroundColor: {r: 0.088109665, g: 0.40144244, b: 0.5660378, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -7860,6 +7861,7 @@ GameObject:
   m_Component:
   - component: {fileID: 895449375}
   - component: {fileID: 895449374}
+  - component: {fileID: 895449376}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -7936,6 +7938,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10.8, y: 19.2}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &895449376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 895449373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5053d1357924de419d5fd332306b30d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &920049729 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 592226365990023056, guid: c1306d4e040ae76418a726851466bf65,
