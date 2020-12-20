@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         unlockDifficulty = false;
+        knives = -1;
         prepRound();
     }
 
@@ -145,7 +146,9 @@ public class GameManager : MonoBehaviour
         { round.reset(); }
 
         //initalize round os we can grab data
-        round.init();
+        int oldKnives = knives;
+        do{ round.init(); }
+        while(oldKnives == round.Knives);
         knives = round.Knives;
 
         //make new block

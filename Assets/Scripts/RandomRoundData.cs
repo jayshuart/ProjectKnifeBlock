@@ -34,15 +34,15 @@ public class RandomRoundData : RoundData
 
         //calc adjustments (like level or imbeded knives)
         if(difficulty == 0)
-        { throwingKnives = Random.Range(1, 3); }
+        { throwingKnives = Random.Range(2, 5); }
         else if(difficulty == 1)
-        { throwingKnives = Random.Range(1, 5); }
+        { throwingKnives = Random.Range(2, 7); }
         else if(difficulty == 2)
-        { throwingKnives = Random.Range(3, 7); }
+        { throwingKnives = Random.Range(3, 8); }
         else if(difficulty == 3)
-        { throwingKnives = Random.Range(3, 10); }
+        { throwingKnives = Random.Range(3, 12); }
         else if(difficulty == 4)
-        { throwingKnives = Random.Range(4, 12); }
+        { throwingKnives = Random.Range(4, 15); }
         else if(difficulty == 5)
         { throwingKnives = Random.Range(5, 20); }
 
@@ -70,9 +70,9 @@ public class RandomRoundData : RoundData
         blockPrefab = cleanBlockPrefab;
 
         //decide if there are gonna be any imbeded knives
-        int imbededChance = Random.Range(0, 100);
+        int imbededChance = Random.Range(0 + (difficulty * 3), 100);
 
-        if(imbededChance > 40) //no imbed
+        if(imbededChance < 60 && difficulty <= 1) //no imbed
         {
             imbededKnives = 0;
         }
@@ -131,7 +131,7 @@ public class RandomRoundData : RoundData
     }
 
     private void imbedKnivesIntoBlock()
-    { Debug.Log("<color=blue>" + distribution.Count + "</color>");
+    {
         //get copy of block prefab
         tempBlock = blockPrefab;
         tempBlock = Instantiate(blockPrefab, Vector3.zero, Quaternion.identity);
@@ -154,13 +154,28 @@ public class RandomRoundData : RoundData
     private void selectCurve()
     {
         //todo: first curve is basic straight curve, rest of choices have  alow chance of being chosen
+        int chance = Random.Range(0, 100);
+        int selectedCurve = 0;
+        if(chance <= 50)
+        { selectedCurve = 0; }
+        else if(chance > 62)
+        { selectedCurve = 1; }
+        else if(chance > 74)
+        { selectedCurve = 2; }
+        else if(chance > 86)
+        { selectedCurve = 3; }
+
+        rotationCurve = curves[selectedCurve];
     }
 
     private void setSpeed()
     {
         //for now
-        rotationSpeed = Random.Range(100, 160);
+        rotationSpeed = Random.Range(100, 120 + (difficulty * 11));
         rotationSpeed += (10 * difficulty);
+
+        //invert?
+        invertRotationCurve = Random.Range(0, 1) > .5 && difficulty > 0;
 
         //todo: spread speed into divisions, generally increasing as level increases
     }

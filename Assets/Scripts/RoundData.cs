@@ -5,13 +5,13 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "RoundData", menuName = "ScriptableObjects/RoundData", order = 2)]
 public class RoundData : ScriptableObject
 {
-    [SerializeField] private AnimationCurve rotationCurve;
+    [SerializeField] protected AnimationCurve rotationCurve;
     public AnimationCurve RotationCurve
     { get { return rotationCurve; } }
     [SerializeField] protected float rotationSpeed = 120;
     public float RotationSpeed
     { get { return rotationSpeed; } }
-    [SerializeField] private bool invertRotationCurve;
+    [SerializeField] protected bool invertRotationCurve;
     public bool InvertRotationCurve
     { get {return invertRotationCurve; } }
     [SerializeField] protected int knives;
