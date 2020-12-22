@@ -30,6 +30,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private FailDisplay failScreen;
     [SerializeField] private WinDisplay winDisplay;
 
+    public SoundManager soundManager;
+
     private bool unlockDifficulty;
 
     // Start is called before the first frame update
@@ -91,6 +93,9 @@ public class GameManager : MonoBehaviour
     {
         if(gameState != GAME_STATE.PLAY) { return; }
         gameState = GAME_STATE.WIN;
+
+        //do sfx
+        soundManager.playShatterSfx();
 
         //do win effects
         StartCoroutine(payoff());

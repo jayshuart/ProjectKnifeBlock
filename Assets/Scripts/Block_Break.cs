@@ -60,7 +60,7 @@ public class Block_Break : MonoBehaviour
 
         if(health < 1) //not <=1 to account for rounding errors
         {
-            Shatter();
+            StartCoroutine(delayShatter());
         }
     }
 
@@ -119,5 +119,11 @@ public class Block_Break : MonoBehaviour
 
         //find gm and run the win state
         GameObject.Find("GameManager").GetComponent<GameManager>().Win();
+    }
+
+    IEnumerator delayShatter()
+    {
+        yield return new WaitForSeconds(.07f);
+        Shatter();
     }
 }
