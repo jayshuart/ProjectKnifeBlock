@@ -72,15 +72,15 @@ public class RandomRoundData : RoundData
         //decide if there are gonna be any imbeded knives
         int imbededChance = Random.Range(0 + (difficulty * 3), 100);
 
-        if(imbededChance < 60 && difficulty <= 1) //no imbed
-        {
-            imbededKnives = 0;
-        }
-        else //imbeded, we need to define its traits
+        if(imbededChance > 40 && difficulty >= 1) //imbeded, we need to define its traits
         {
             //how many, whats the spread like?
             defineImbdedKnives();
             imbedKnivesIntoBlock();
+        }
+        else//no imbed
+        {
+            imbededKnives = 0;
         }
 
 
@@ -90,7 +90,10 @@ public class RandomRoundData : RoundData
     private void defineImbdedKnives()
     {
         //most interesting play will prolly be in the 2-4 range, so weight towards that
-        int chance = Random.Range(0, 100);
+        int min = difficulty <= 2 ? 73 : 0;
+        min = difficulty <= 3 ? 38 : 0;
+
+        int chance = Random.Range(min, 100);
         if(chance > 93) // 10
         { imbededKnives = 1; }
         else if (chance > 72) //20
@@ -176,7 +179,5 @@ public class RandomRoundData : RoundData
 
         //invert?
         invertRotationCurve = Random.Range(0, 1) > .5 && difficulty > 0;
-
-        //todo: spread speed into divisions, generally increasing as level increases
     }
 }
