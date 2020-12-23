@@ -106,8 +106,10 @@ public class Block_Break : MonoBehaviour
             GameObject newShard = Instantiate(shard, this.gameObject.transform.position, this.gameObject.transform.rotation);
 
             //apply a force on it to make the break mroe exciting
-            Vector2 bumpForce = new Vector2(Random.Range(-200, 200), Random.Range(-200, 200));
-            newShard.GetComponent<Rigidbody2D>().AddForce(bumpForce);
+            Vector2 bumpForce = new Vector2(Random.Range(-250, 250), Random.Range(-50, 250));
+            Rigidbody2D shardRb = newShard.GetComponent<Rigidbody2D>();
+            shardRb.AddTorque( Random.Range(-50, 50));
+            shardRb.AddForce(bumpForce);
         }
 
         //unlock all the knives imbded in block so they fall
@@ -115,6 +117,11 @@ public class Block_Break : MonoBehaviour
         foreach(Obj_Knife knife in knives)
         {
             knife.Release();
+
+            Vector2 bumpForce = new Vector2(Random.Range(-150, 150), Random.Range(-150, 150));
+            Rigidbody2D knifeRb = knife.GetComponent<Rigidbody2D>();
+            knifeRb.AddForce(bumpForce);
+            knifeRb.AddTorque( Random.Range(-50, 50));
         }
 
         //find gm and run the win state
