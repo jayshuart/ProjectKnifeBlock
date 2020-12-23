@@ -56,7 +56,7 @@ public class OptionsMenu : MonoBehaviour
     IEnumerator close_workaround()
     { 
         yield return null;
-        this.closeOptions();
+        this.gameObject.SetActive(false);
     }
 
 
@@ -68,17 +68,20 @@ public class OptionsMenu : MonoBehaviour
 
     public void openOptions()
     {
+        SoundManager.Instance.playClickSfx();
         this.gameObject.SetActive(true);
     }
 
     public void closeOptions()
     {
+        SoundManager.Instance.playClickSfx();
         this.gameObject.SetActive(false);
     }
 
     public void playIntenseMusic(){
         if(music.clip == intenseMusic) { return; }
 
+        SoundManager.Instance.playClickSfx();
         PlayerPrefs.SetString("music", "intense");
         music.clip = intenseMusic;
         music.Play();
@@ -87,6 +90,7 @@ public class OptionsMenu : MonoBehaviour
     public void playRelaxedMusic(){
         if(music.clip == relaxedMusic) { return; }
 
+        SoundManager.Instance.playClickSfx();
         PlayerPrefs.SetString("music", "relaxed");
         music.clip = relaxedMusic;
         music.Play();
@@ -94,9 +98,9 @@ public class OptionsMenu : MonoBehaviour
 
     public void muteMusic(){
         if(music.clip == null) { return; }
-
+        
+        SoundManager.Instance.playClickSfx();
         PlayerPrefs.SetString("music", "mute");
-        music.Stop();
         music.clip = null;
     }
 }
