@@ -44,6 +44,7 @@ public class FailDisplay : MonoBehaviour
         if(Input.GetMouseButtonDown(0) //we can use this on pc and mobile, as we dont care about any info except for if we have input
         && score.gameObject.activeSelf && unlocked)
         {
+            SoundManager.Instance.playClickSfx();
             StartCoroutine(gotoGame());
         }
     }
