@@ -9,6 +9,7 @@ public class SoundManager : Singleton<SoundManager>
     [SerializeField] private AudioClip throwSound;
     [SerializeField] private AudioClip metalHitSound;
     [SerializeField] private AudioClip hitSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +39,6 @@ public class SoundManager : Singleton<SoundManager>
 
     public void playShatterSfx()
     {
-        sfx.PlayOneShot(shatterSfx, sfx.volume * .8f);
+        sfx.PlayOneShot(shatterSfx, sfx.volume * .7f);
     }
 }

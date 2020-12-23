@@ -580,7 +580,7 @@ RectTransform:
   m_GameObject: {fileID: 1053055626}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.64764, y: 0.64764, z: 0.64764}
+  m_LocalScale: {x: 0.96388257, y: 0.96388257, z: 0.96388257}
   m_Children: []
   m_Father: {fileID: 811583224}
   m_RootOrder: 1
@@ -674,7 +674,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 260d20774212f3a469bd0d7308ccf398, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -919,6 +919,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_audioClip
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5814104887233817740, guid: da1a645bf589ba04ebd83a36ab3ec9fe,
+        type: 3}
+      propertyPath: m_Volume
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da1a645bf589ba04ebd83a36ab3ec9fe, type: 3}
@@ -1353,11 +1358,52 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1509610489}
     m_Modifications:
+    - target: {fileID: 4412397132957823312, guid: 901ee8ddd13aa83418f260834ce7d3aa,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 260d20774212f3a469bd0d7308ccf398,
+        type: 3}
     - target: {fileID: 4412397132957823313, guid: 901ee8ddd13aa83418f260834ce7d3aa,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 811583225}
+    - target: {fileID: 4412397132957823318, guid: 901ee8ddd13aa83418f260834ce7d3aa,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.86750025
+      objectReference: {fileID: 0}
+    - target: {fileID: 4412397132957823318, guid: 901ee8ddd13aa83418f260834ce7d3aa,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.86750025
+      objectReference: {fileID: 0}
+    - target: {fileID: 4412397132957823318, guid: 901ee8ddd13aa83418f260834ce7d3aa,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.86750025
+      objectReference: {fileID: 0}
+    - target: {fileID: 4412397133319047511, guid: 901ee8ddd13aa83418f260834ce7d3aa,
+        type: 3}
+      propertyPath: m_text
+      value: Lofi
+      objectReference: {fileID: 0}
+    - target: {fileID: 4412397133319047511, guid: 901ee8ddd13aa83418f260834ce7d3aa,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4412397134705259005, guid: 901ee8ddd13aa83418f260834ce7d3aa,
+        type: 3}
+      propertyPath: m_text
+      value: Jungle
+      objectReference: {fileID: 0}
+    - target: {fileID: 4412397134705259005, guid: 901ee8ddd13aa83418f260834ce7d3aa,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4412397134994560568, guid: 901ee8ddd13aa83418f260834ce7d3aa,
         type: 3}
       propertyPath: music

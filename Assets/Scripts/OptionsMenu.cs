@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class OptionsMenu : MonoBehaviour
 {
@@ -16,8 +17,12 @@ public class OptionsMenu : MonoBehaviour
     void Start()
     {
         music = SoundManager.Instance.gameObject.GetComponent<AudioSource>();
-        StartCoroutine(autoSelectBtn_workaround());
-        StartCoroutine(close_workaround());
+        if(SceneManager.GetActiveScene().name == "Splash")
+        {
+            StartCoroutine(autoSelectBtn_workaround());
+            StartCoroutine(close_workaround());
+        }
+        
     }
 
     void OnEnable()
