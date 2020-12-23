@@ -9,12 +9,12 @@ public class UI_Tokens : MonoBehaviour
     private float tokenWeight = 1; //how much a token is worth compared to knives, default is 1
     private float totalTokensWeighted;
     private float usedTokensWeighted = 0f;
-    private bool intialized;
+    [SerializeField] private bool intialized = false;
 
     // Start is called before the first frame update
     void Start()
     {   
-        intialized = false;
+
     }
 
     public void initTokens(int knives)
