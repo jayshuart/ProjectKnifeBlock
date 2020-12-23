@@ -95,7 +95,7 @@ public class Obj_Knife : MonoBehaviour
     {
         moving = true;
         col.enabled = true;
-        gm.soundManager.playThrowSfx();
+        SoundManager.Instance.playThrowSfx();
     }
 
     private void move()
@@ -127,7 +127,7 @@ public class Obj_Knife : MonoBehaviour
                 //trigger fail state
                 gm.Fail();
 
-                gm.soundManager.playMetalHitSfx();
+                SoundManager.Instance.playMetalHitSfx();
             }
             
             return;
@@ -145,7 +145,7 @@ public class Obj_Knife : MonoBehaviour
 
         //update block damage state
         target.GetComponent<Block_Break>().Hit();
-        gm.soundManager.playHitSfx();
+        SoundManager.Instance.playHitSfx();
     }
 
     public void Release()
