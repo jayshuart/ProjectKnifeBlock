@@ -34,32 +34,19 @@ public class RandomRoundData : RoundData
 
         //calc adjustments (like level or imbeded knives)
         if(difficulty == 0)
-        { throwingKnives = Random.Range(2, 5); }
+        { throwingKnives = Random.Range(2, 3); }
         else if(difficulty == 1)
-        { throwingKnives = Random.Range(2, 7); }
+        { throwingKnives = Random.Range(2, 4); }
         else if(difficulty == 2)
-        { throwingKnives = Random.Range(3, 8); }
+        { throwingKnives = Random.Range(3, 6); }
         else if(difficulty == 3)
-        { throwingKnives = Random.Range(3, 12); }
+        { throwingKnives = Random.Range(3, 8); }
         else if(difficulty == 4)
-        { throwingKnives = Random.Range(4, 15); }
+        { throwingKnives = Random.Range(4, 9); }
         else if(difficulty == 5)
-        { throwingKnives = Random.Range(5, 20); }
-
-        //special handling for high imbed cases
-        if(imbededKnives >= 19)
-        {
-            throwingKnives = 1;
-        }
-        else if(imbededKnives >= 18)
-        {
-            throwingKnives = 2;
-        }
-        else if(imbededKnives >= 11)
-        {
-            if(throwingKnives > 10)
-            { throwingKnives = Random.Range(difficulty, 10); }
-        }
+        { throwingKnives = Random.Range(5, 10); }
+        else if(difficulty == 6)
+        { throwingKnives = Random.Range(2, 12); }
 
         knives = throwingKnives;
         return knives;
@@ -178,6 +165,6 @@ public class RandomRoundData : RoundData
         rotationSpeed += (10 * difficulty);
 
         //invert?
-        invertRotationCurve = Random.Range(0, 1) > .5 && difficulty > 0;
+        invertRotationCurve = Random.Range(0, 2) > .5 && difficulty > 0;
     }
 }

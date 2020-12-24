@@ -25,7 +25,7 @@ public class SoundManager : Singleton<SoundManager>
 
     public void playMetalHitSfx()
     {
-        sfx.PlayOneShot(metalHitSound, sfx.volume * .5f);
+        sfx.PlayOneShot(metalHitSound, sfx.volume * .32f);
     }
 
     public void playHitSfx()
@@ -35,7 +35,7 @@ public class SoundManager : Singleton<SoundManager>
 
     public void playThrowSfx()
     {
-        sfx.PlayOneShot(throwSound);
+        sfx.PlayOneShot(throwSound, sfx.volume * .8f);
     }
 
     public void playShatterSfx()
@@ -45,7 +45,7 @@ public class SoundManager : Singleton<SoundManager>
 
     public void playClickSfx()
     {
-        sfx.PlayOneShot(clickSound, .5f);
+        sfx.PlayOneShot(clickSound, .7f);
     }
 
     public void playSound(AudioClip clip)

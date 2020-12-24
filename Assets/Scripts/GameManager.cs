@@ -147,7 +147,7 @@ public class GameManager : MonoBehaviour
         if(increaseDifficulty) { round.difficulty = Mathf.Clamp((round.difficulty + 1), 0, 5); }
 
         //special acse reset for our first random level
-        if(levelManager.CurrentRound == 0 && levelManager.CurrentLevel == 3 && !unlockDifficulty)
+        if(levelManager.CurrentRound == 0 && levelManager.CurrentLevel == 1 && !unlockDifficulty)
         { round.reset(); }
 
         //initalize round os we can grab data
