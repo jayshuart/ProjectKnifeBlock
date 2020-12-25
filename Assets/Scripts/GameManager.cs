@@ -144,7 +144,7 @@ public class GameManager : MonoBehaviour
 
         //get current round data from level manager
         RoundData round = levelManager.getRound();
-        if(increaseDifficulty) { round.difficulty = Mathf.Clamp((round.difficulty + 1), 0, 5); }
+        if(increaseDifficulty) { round.difficulty = Mathf.Clamp((round.difficulty + 1), 0, 6); }
 
         //special acse reset for our first random level
         if(levelManager.CurrentRound == 0 && levelManager.CurrentLevel == 1 && !unlockDifficulty)

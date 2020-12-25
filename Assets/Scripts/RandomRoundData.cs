@@ -34,19 +34,19 @@ public class RandomRoundData : RoundData
 
         //calc adjustments (like level or imbeded knives)
         if(difficulty == 0)
-        { throwingKnives = Random.Range(2, 3); }
+        { throwingKnives = Random.Range(2, 5); }
         else if(difficulty == 1)
-        { throwingKnives = Random.Range(2, 4); }
+        { throwingKnives = Random.Range(2, 6); }
         else if(difficulty == 2)
-        { throwingKnives = Random.Range(3, 6); }
+        { throwingKnives = Random.Range(3, 7); }
         else if(difficulty == 3)
-        { throwingKnives = Random.Range(3, 8); }
+        { throwingKnives = Random.Range(3, 9); }
         else if(difficulty == 4)
-        { throwingKnives = Random.Range(4, 9); }
+        { throwingKnives = Random.Range(4, 10); }
         else if(difficulty == 5)
-        { throwingKnives = Random.Range(5, 10); }
-        else if(difficulty == 6)
-        { throwingKnives = Random.Range(2, 12); }
+        { throwingKnives = Random.Range(5, 11); }
+        else if(difficulty > 5)
+        { throwingKnives = Random.Range(2, 13); }
 
         knives = throwingKnives;
         return knives;
@@ -77,8 +77,8 @@ public class RandomRoundData : RoundData
     private void defineImbdedKnives()
     {
         //most interesting play will prolly be in the 2-4 range, so weight towards that
-        int min = difficulty <= 2 ? 73 : 0;
-        min = difficulty <= 3 ? 38 : 0;
+        int min = difficulty <= 3 ? 38 : 0;
+        min = difficulty <= 2 ? 73 : min;
 
         int chance = Random.Range(min, 100);
         if(chance > 93) // 10
