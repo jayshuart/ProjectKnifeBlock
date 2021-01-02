@@ -12,43 +12,82 @@ public class RandomRoundData : RoundData
     [SerializeField] private GameObject cleanBlockPrefab;
     private GameObject tempBlock;
 
+    private Incrementor knifeChance;
+    private Incrementor imbedChance;
+
+
     public override void init()
     {
-        prepBlock();
-        setKnives();
+        //init knives and imbed chance
+        if(imbedChance == null)
+        { imbedChance = new Incrementor(); }
+        if(knifeChance == null) 
+        { knifeChance = new Incrementor(); }
+
+        newLevelInit();
+
+        //set everything else
+        setKnives(); //knives
+        prepBlock(); //block w/ imbed
+        
         selectCurve();
         setSpeed();
+
+        //newLevel = false;
     }
 
     public override void cleanup()
     {
+        newLevel = false;
         GameObject.Destroy(tempBlock);
+    }
+
+    private void newLevelInit()
+    {
+        if(!newLevel) { return; }
+
+        switch(difficulty)
+        {
+            case 0:
+                knifeChance.init(0f, new float[] {1f}, 100f, 0f, 100f);
+                imbedChance.init(0f, new float[] {0f}, -1f, 0f, -1f);
+                break;
+
+            case 1:
+                knifeChance.init(1f, new float[] {1f, 2f}, 100f, 0f, 100f);
+                imbedChance.init(0f, new float[] {0f}, -1f, 0f, -1f);
+                break;
+
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            case 6:
+                knifeChance.init(1f, new float[] {1, 2f}, 30f, 30f, 40f);
+                imbedChance.init(1f, new float[] {1f}, 70f, 30f, 30f);
+                break;
+
+            default:
+                knifeChance.init(1f, new float[] {1f}, 100f, 0f, 100f);
+                imbedChance.init(0f, new float[] {0f}, -1f, 0f, -1f);
+                break;
+        }
     }
 
     private int setKnives()
     {
-        int throwingKnives = 0;
+        int throwingKnives = (int) knifeChance.Value;
 
-        //weighted random for number of knives
-        int chance = Random.Range(0, 100);
+        if(knifeChance.checkChance())
+        {
+            throwingKnives += (int) knifeChance.ValueUp;
 
-        //calc adjustments (like level or imbeded knives)
-        if(difficulty == 0)
-        { throwingKnives = Random.Range(2, 5); }
-        else if(difficulty == 1)
-        { throwingKnives = Random.Range(2, 6); }
-        else if(difficulty == 2)
-        { throwingKnives = Random.Range(3, 7); }
-        else if(difficulty == 3)
-        { throwingKnives = Random.Range(3, 9); }
-        else if(difficulty == 4)
-        { throwingKnives = Random.Range(4, 10); }
-        else if(difficulty == 5)
-        { throwingKnives = Random.Range(5, 11); }
-        else if(difficulty > 5)
-        { throwingKnives = Random.Range(2, 13); }
+            //lower imbed chance if we add a knife
+            imbedChance.Chance -= (imbedChance.ChanceUp / 2);
+        }
 
         knives = throwingKnives;
+        knifeChance.Value = knives;
         return knives;
     }
 
@@ -57,46 +96,29 @@ public class RandomRoundData : RoundData
         blockPrefab = cleanBlockPrefab;
 
         //decide if there are gonna be any imbeded knives
-        int imbededChance = Random.Range(0 + (difficulty * 3), 100);
+        imbededKnives = (int) imbedChance.Value;
 
-        if(imbededChance > 40 && difficulty >= 1) //imbeded, we need to define its traits
+        if(imbedChance.checkChance()) //imbeded, we need to define its traits
         {
-            //how many, whats the spread like?
-            defineImbdedKnives();
-            imbedKnivesIntoBlock();
-        }
-        else//no imbed
-        {
-            imbededKnives = 0;
+            //most interesting play will prolly be in the 2-4 range, so weight towards that
+            imbededKnives = (int) (imbedChance.Value + imbedChance.ValueUp); //(Mathf.Clamp((imbedChance.Value + imbedChance.ValueUp), 0f, 7f));
+            imbedChance.Value = imbededKnives;
         }
 
+        //how many, whats the spread like?
+        defineImbdedKnives();
+        imbedKnivesIntoBlock();
 
         return blockPrefab;
     }
 
     private void defineImbdedKnives()
     {
-        //most interesting play will prolly be in the 2-4 range, so weight towards that
-        int min = difficulty <= 3 ? 38 : 0;
-        min = difficulty <= 2 ? 73 : min;
-
-        int chance = Random.Range(min, 100);
-        if(chance > 93) // 10
-        { imbededKnives = 1; }
-        else if (chance > 72) //20
-        { imbededKnives = 2; }
-        else if (chance > 37) //35
-        { imbededKnives = 3; }
-        else if (chance > 18) //20
-        { imbededKnives = 4; }
-        else if (chance > 5) //10
-        { imbededKnives = 5; }
-        else // 5
-        { imbededKnives = 6; }
+        if(imbededKnives <= 0) {return; }
 
         //figure out distribution, different num of knives can be done differently
         distribution = new List<float>(); //holds where each nife is disributed
-        chance = Random.Range(0, 100);
+        float chance = Random.Range(0, 100);
         if(chance > 60)
         {
             distribution.Add(360.0f / imbededKnives);
@@ -122,6 +144,8 @@ public class RandomRoundData : RoundData
 
     private void imbedKnivesIntoBlock()
     {
+        if(imbededKnives <= 0) { return; }
+        
         //get copy of block prefab
         tempBlock = blockPrefab;
         tempBlock = Instantiate(blockPrefab, Vector3.zero, Quaternion.identity);

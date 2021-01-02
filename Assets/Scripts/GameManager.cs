@@ -130,13 +130,10 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         winAnim.gameObject.SetActive(false);
 
-        //start new round
-        bool upDifficulty = levelManager.CurrentRound == 0 && levelManager.CurrentLevel > 2; //new level? are we past the default levels?
-        if(!unlockDifficulty && upDifficulty) { unlockDifficulty = true; }
-        prepRound(upDifficulty);
+        prepRound();
     }
 
-    private void prepRound(bool increaseDifficulty = false)
+    private void prepRound()
     {
         //delete old block
         if(targetBlock != null)
@@ -144,11 +141,13 @@ public class GameManager : MonoBehaviour
 
         //get current round data from level manager
         RoundData round = levelManager.getRound();
-        if(increaseDifficulty) { round.difficulty = Mathf.Clamp((round.difficulty + 1), 0, 6); }
 
         //special acse reset for our first random level
-        if(levelManager.CurrentRound == 0 && levelManager.CurrentLevel == 1 && !unlockDifficulty)
-        { round.reset(); }
+        if(levelManager.CurrentRound == 0)
+        { 
+            round.difficulty = Mathf.Clamp((round.difficulty + 1), 0, 6);
+            round.reset(levelManager.CurrentLevel == 0); 
+        }
 
         //initalize round os we can grab data
         int oldKnives = knives;

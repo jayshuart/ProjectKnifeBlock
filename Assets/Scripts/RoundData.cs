@@ -24,6 +24,10 @@ public class RoundData : ScriptableObject
 
     public int difficulty = 0;
 
+    [SerializeField] protected bool newLevel;
+    public bool NewLevel
+    { get { return newLevel; }}
+
     public virtual void init()
     {
         //do nothing in base - other like randomround will override
@@ -34,10 +38,11 @@ public class RoundData : ScriptableObject
         //do nothing in base - other like randomround will override
     }
 
-    public void reset()
+    public virtual void reset(bool hardReset = false)
     {
-        difficulty = 0;
+        difficulty = hardReset ? 0 : difficulty;
         rotationSpeed = 120;
+        newLevel = true;
     }
 
 }
