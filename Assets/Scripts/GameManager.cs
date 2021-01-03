@@ -145,7 +145,7 @@ public class GameManager : MonoBehaviour
         //special acse reset for our first random level
         if(levelManager.CurrentRound == 0)
         { 
-            round.difficulty = Mathf.Clamp((round.difficulty + 1), 0, 6);
+            round.difficulty = Mathf.Clamp((round.difficulty + 1), 0, 10);
             round.reset(levelManager.CurrentLevel == 0); 
         }
 
