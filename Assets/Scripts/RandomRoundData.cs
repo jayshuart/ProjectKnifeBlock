@@ -15,6 +15,8 @@ public class RandomRoundData : RoundData
     private Incrementor knifeChance;
     private Incrementor imbedChance;
 
+    private bool repeatLevel;
+
 
     public override void init()
     {
@@ -24,11 +26,20 @@ public class RandomRoundData : RoundData
         if(knifeChance == null) 
         { knifeChance = new Incrementor(); }
 
+        repeatLevel = true;
+
         newLevelInit();
 
         //set everything else
         setKnives(); //knives
         prepBlock(); //block w/ imbed
+
+        while(repeatLevel)
+        {
+            cleanup();
+            setKnives(); 
+            prepBlock();
+        }
         
         selectCurve();
         setSpeed();
@@ -40,12 +51,15 @@ public class RandomRoundData : RoundData
     public override void cleanup()
     {
         newLevel = false;
+        repeatLevel = true; //will be set to true as aspects change
         GameObject.Destroy(tempBlock);
     }
 
     private void newLevelInit()
     {
         if(!newLevel) { return; }
+
+        repeatLevel = false;
 
         switch(difficulty)
         {
@@ -114,9 +128,19 @@ public class RandomRoundData : RoundData
                 imbedChance.init(2f, new float[] {1f}, 30f, 30f, 30f);
                 break;
 
+            case 13:
+                knifeChance.init(Random.Range(4, 7), new float[] {1f, 2f}, 50f, 30f, 50f);
+                imbedChance.init(Random.Range(1, 3), new float[] {1f}, 30f, 30f, 30f);
+                break;
+
+            case 14:
+                knifeChance.init(Random.Range(5, 8), new float[] {1f}, 30f, 30f, 30f);
+                imbedChance.init(Random.Range(1, 3), new float[] {1f}, 50f, 20f, 40f);
+                break;
+
             default:
-                knifeChance.init(1f, new float[] {1f}, 100f, 0f, 100f);
-                imbedChance.init(0f, new float[] {0f}, -1f, 0f, -1f);
+                knifeChance.init(Random.Range(1, 8), new float[] {1f, 1f, 1f, 2f}, 35f, 30f, 30f);
+                imbedChance.init(Random.Range(1, 4), new float[] {Random.Range(0, 2), Random.Range(0, 2), Random.Range(0, 2), Random.Range(0, 3)}, 35, 30, 35);
                 break;
         }
     }
@@ -131,6 +155,8 @@ public class RandomRoundData : RoundData
 
             //lower imbed chance if we add a knife
             imbedChance.Chance -= (imbedChance.ChanceUp / 2);
+
+            repeatLevel = false;
         }
 
         knives = throwingKnives;
@@ -150,6 +176,8 @@ public class RandomRoundData : RoundData
             //most interesting play will prolly be in the 2-4 range, so weight towards that
             imbededKnives = (int) (imbedChance.Value + imbedChance.ValueUp); //(Mathf.Clamp((imbedChance.Value + imbedChance.ValueUp), 0f, 7f));
             imbedChance.Value = imbededKnives;
+
+            repeatLevel = false;
         }
 
         //how many, whats the spread like?
@@ -173,8 +201,8 @@ public class RandomRoundData : RoundData
         else
         {
             float degreesLeft = 360f; //each knife takes some out of the full circle
-            float buffer = 5f; //min space between knives
-            float extraBuffer = 10f;
+            float buffer = 15f; //min space between knives
+            float extraBuffer = 15f;
             
             //loop through each knife and spread it around
             for(int i = 0; i < imbededKnives - 1; i++)
