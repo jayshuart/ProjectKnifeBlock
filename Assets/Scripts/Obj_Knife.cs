@@ -194,6 +194,8 @@ public class Obj_Knife : MonoBehaviour
         {
             //delet this one bc its out of bounds
             Destroy(this.gameObject);
+
+            gm.Fail();
         }
     }
 }
