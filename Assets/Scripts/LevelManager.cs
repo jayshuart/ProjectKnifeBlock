@@ -68,7 +68,7 @@ public class LevelManager : MonoBehaviour
 
         if(pReset)
         { 
-            yield return new WaitForSeconds(.5f);
+            yield return new WaitForSeconds(.4f);
             roundNodes[3].IsUsed = true;
 
             yield return new WaitForSeconds(1f);
@@ -76,7 +76,7 @@ public class LevelManager : MonoBehaviour
         }
         else
         { 
-            yield return new WaitForSeconds(.6f);
+            yield return new WaitForSeconds(.4f);
             roundNodes[currentRound - 1].IsUsed = true; 
         }
 
