@@ -55,13 +55,13 @@ public class RandomRoundData : RoundData
                 break;
 
             case 1:
-                knifeChance.init(2f, new float[] {1f, 2f}, 100f, 0f, 100f);
-                imbedChance.init(0f, new float[] {0f}, -1f, 0f, -1f);
+                knifeChance.init(1f, new float[] {1, 2f}, 30f, 30f, 40f);
+                imbedChance.init(1f, new float[] {1f}, 70f, 30f, 30f);
                 break;
 
             case 2:
-                knifeChance.init(1f, new float[] {1, 2f}, 30f, 30f, 40f);
-                imbedChance.init(1f, new float[] {1f}, 70f, 30f, 30f);
+                knifeChance.init(2f, new float[] {1f, 2f}, 100f, 0f, 100f);
+                imbedChance.init(0f, new float[] {0f}, -1f, 0f, -1f);
                 break;
 
             case 3:
