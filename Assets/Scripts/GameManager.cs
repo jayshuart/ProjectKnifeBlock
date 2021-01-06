@@ -99,7 +99,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(payoff());
 
         //update level data and scoring
-        score += 100; //todo - 10 per round, 100 on level complete
+        score += 10; //todo - 10 per round, 100 on level complete
         winDisplay.setScore(score);
         levelManager.nextLevel();
 

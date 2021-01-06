@@ -65,7 +65,7 @@ public class RandomRoundData : RoundData
         {
             case 0:
                 knifeChance.init(1f, new float[] {1f}, 100f, 0f, 100f);
-                imbedChance.init(0f, new float[] {0f}, -1f, 0f, -1f);
+                imbedChance.init(10f, new float[] {0f}, -1f, 0f, -1f);
                 break;
 
             case 1:
@@ -193,12 +193,12 @@ public class RandomRoundData : RoundData
 
         //figure out distribution, different num of knives can be done differently
         distribution = new List<float>(); //holds where each nife is disributed
-        float chance = Random.Range(0, 100);
-        if(chance > 60)
+        float chance = Random.Range(0, 101);
+        if(chance > 70)
         {
             distribution.Add(360.0f / imbededKnives);
         }
-        else
+        else if( chance > 35)
         {
             float degreesLeft = 360f; //each knife takes some out of the full circle
             float buffer = 15f; //min space between knives
@@ -211,6 +211,37 @@ public class RandomRoundData : RoundData
                     360 - degreesLeft, //mind
                     degreesLeft - ((imbededKnives - i) * (buffer + extraBuffer))); //can be whatever is left
                         //extra buffer section to try to keep things more towards the min so we dont eatt he space for the later knives
+
+                distribution.Add(distrib);
+
+                degreesLeft -= distrib;
+            }
+        }
+        else
+        {
+            float buffer = 15f; //min space between knives
+            float extraBuffer = 15f;
+
+            //loop through each knife and spread it around
+            for(int i = 0; i < imbededKnives - 1; i++)
+            {
+                float distrib = 0;
+                float closest = 100000;
+                int attempts = 0;
+                do{
+                    distrib = Random.Range(0, 360);
+
+                    for(int k = 0; k < distribution.Count; k++)
+                    {
+                        float dist = Mathf.Abs(distrib - distribution[k]);
+                        if(dist < closest) { closest = dist; }
+
+                        if(attempts > 10) 
+                        { buffer--; extraBuffer--; }
+                        attempts++;
+                    }
+                }
+                while(closest < buffer + extraBuffer);
 
                 distribution.Add(distrib);
             }
@@ -227,13 +258,16 @@ public class RandomRoundData : RoundData
 
         //loop through knives and imbed them at the defined positions
         Vector3 spawn = new Vector3(0, -2.7f, 1);
-        for(int i = 0; i < distribution.Count; i++)
+        int distribIndex = 0;
+        for(int i = 0; i < imbededKnives - 1; i++)
         { 
             //create new knife
             GameObject knife = Instantiate(knifePrefab, spawn, Quaternion.identity, tempBlock.transform);
 
             //reset from old rotation and rotate block again
-            tempBlock.transform.Rotate(new Vector3(0, 0, 1), distribution[i]);
+            tempBlock.transform.Rotate(new Vector3(0, 0, 1), distribution[distribIndex]);
+
+            distribIndex = (distribIndex + 1) % distribution.Count;
         }
 
         //update prefab
