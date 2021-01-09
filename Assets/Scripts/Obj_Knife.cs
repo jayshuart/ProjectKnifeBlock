@@ -14,6 +14,9 @@ public class Obj_Knife : MonoBehaviour
     private bool thrown;
     [SerializeField] bool startImbeded = false; //not a thrown knife, starts as a part of the block
 
+    [SerializeField] private Sprite goldSprite;
+    [SerializeField] private Sprite normalSprite;
+
     public GameManager gm;
 
     // Start is called before the first frame update
@@ -63,6 +66,16 @@ public class Obj_Knife : MonoBehaviour
 
         //float while we wait to be thrown
         StartCoroutine(hover());
+
+        //swap texture
+        setSprite();
+
+    }
+
+    public void setSprite()
+    {
+        int state = PlayerPrefs.GetInt("goldKnife", 0);
+        this.gameObject.GetComponent<SpriteRenderer>().sprite = state == 1 ? goldSprite : normalSprite;
     }
 
     IEnumerator spawnEffect()

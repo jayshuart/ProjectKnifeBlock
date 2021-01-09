@@ -65,7 +65,7 @@ public class RandomRoundData : RoundData
         {
             case 0:
                 knifeChance.init(1f, new float[] {1f}, 100f, 0f, 100f);
-                imbedChance.init(10f, new float[] {0f}, -1f, 0f, -1f);
+                imbedChance.init(0f, new float[] {0f}, -1f, 0f, -1f);
                 break;
 
             case 1:
@@ -140,7 +140,7 @@ public class RandomRoundData : RoundData
 
             default:
                 knifeChance.init(Random.Range(1, 8), new float[] {1f, 1f, 1f, 2f}, 35f, 30f, 30f);
-                imbedChance.init(Random.Range(1, 4), new float[] {Random.Range(0, 2), Random.Range(0, 2), Random.Range(0, 2), Random.Range(0, 3)}, 35, 30, 35);
+                imbedChance.init(Random.Range(1, 5), new float[] {Random.Range(0, 2), Random.Range(0, 2), Random.Range(0, 2), Random.Range(0, 3)}, 35, 30, 35);
                 break;
         }
     }
