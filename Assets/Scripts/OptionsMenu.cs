@@ -34,23 +34,7 @@ public class OptionsMenu : MonoBehaviour
     {
         yield return null; //yiled until end of the frame
         EventSystem.current.SetSelectedGameObject(null);
-        switch(PlayerPrefs.GetString("music", "relaxed"))
-        {
-            case "intense":
-                intenseBtn.Select();
-                playIntenseMusic();
-                break;
-
-            case "relaxed":
-                relaxedBtn.Select();
-                playRelaxedMusic();
-                break;
-
-            case "mute":
-                muteBtn.Select();
-                muteMusic();
-                break;
-        }
+        setButtonHighlight();
     }
 
     IEnumerator close_workaround()
@@ -85,6 +69,7 @@ public class OptionsMenu : MonoBehaviour
         PlayerPrefs.SetString("music", "intense");
         music.clip = intenseMusic;
         music.Play();
+        setButtonHighlight();
     }
 
     public void playRelaxedMusic(){
@@ -94,6 +79,7 @@ public class OptionsMenu : MonoBehaviour
         PlayerPrefs.SetString("music", "relaxed");
         music.clip = relaxedMusic;
         music.Play();
+        setButtonHighlight();
     }
 
     public void muteMusic(){
@@ -102,5 +88,34 @@ public class OptionsMenu : MonoBehaviour
         SoundManager.Instance.playClickSfx();
         PlayerPrefs.SetString("music", "mute");
         music.clip = null;
+        setButtonHighlight();
+    }
+
+    public void setButtonHighlight()
+    {
+        intenseBtn.interactable = true;
+        relaxedBtn.interactable = true;
+        muteBtn.interactable = true;
+
+        switch(PlayerPrefs.GetString("music", "relaxed"))
+        {
+            case "intense":
+                intenseBtn.Select();
+                playIntenseMusic();
+                intenseBtn.interactable = false;
+                break;
+
+            case "relaxed":
+                relaxedBtn.Select();
+                playRelaxedMusic();
+                relaxedBtn.interactable = false;
+                break;
+
+            case "mute":
+                muteBtn.Select();
+                muteMusic();
+                muteBtn.interactable = false;
+                break;
+        }
     }
 }
