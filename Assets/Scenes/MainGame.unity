@@ -7992,6 +7992,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 477919120}
     m_Modifications:
+    - target: {fileID: 4412397132861221211, guid: 901ee8ddd13aa83418f260834ce7d3aa,
+        type: 3}
+      propertyPath: m_Colors.m_DisabledColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4412397132861221211, guid: 901ee8ddd13aa83418f260834ce7d3aa,
+        type: 3}
+      propertyPath: m_Colors.m_DisabledColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4412397132861221211, guid: 901ee8ddd13aa83418f260834ce7d3aa,
+        type: 3}
+      propertyPath: m_Colors.m_DisabledColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4412397132861221211, guid: 901ee8ddd13aa83418f260834ce7d3aa,
+        type: 3}
+      propertyPath: m_Colors.m_DisabledColor.a
+      value: 0.92156863
+      objectReference: {fileID: 0}
     - target: {fileID: 4412397132957823312, guid: 901ee8ddd13aa83418f260834ce7d3aa,
         type: 3}
       propertyPath: m_Sprite
@@ -8073,10 +8093,50 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.815557
       objectReference: {fileID: 0}
+    - target: {fileID: 4412397133269876600, guid: 901ee8ddd13aa83418f260834ce7d3aa,
+        type: 3}
+      propertyPath: m_Colors.m_DisabledColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4412397133269876600, guid: 901ee8ddd13aa83418f260834ce7d3aa,
+        type: 3}
+      propertyPath: m_Colors.m_DisabledColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4412397133269876600, guid: 901ee8ddd13aa83418f260834ce7d3aa,
+        type: 3}
+      propertyPath: m_Colors.m_DisabledColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4412397133269876600, guid: 901ee8ddd13aa83418f260834ce7d3aa,
+        type: 3}
+      propertyPath: m_Colors.m_DisabledColor.a
+      value: 0.92156863
+      objectReference: {fileID: 0}
     - target: {fileID: 4412397133319047511, guid: 901ee8ddd13aa83418f260834ce7d3aa,
         type: 3}
       propertyPath: m_text
       value: Lofi
+      objectReference: {fileID: 0}
+    - target: {fileID: 4412397133483827745, guid: 901ee8ddd13aa83418f260834ce7d3aa,
+        type: 3}
+      propertyPath: m_Colors.m_DisabledColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4412397133483827745, guid: 901ee8ddd13aa83418f260834ce7d3aa,
+        type: 3}
+      propertyPath: m_Colors.m_DisabledColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4412397133483827745, guid: 901ee8ddd13aa83418f260834ce7d3aa,
+        type: 3}
+      propertyPath: m_Colors.m_DisabledColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4412397133483827745, guid: 901ee8ddd13aa83418f260834ce7d3aa,
+        type: 3}
+      propertyPath: m_Colors.m_DisabledColor.a
+      value: 0.92156863
       objectReference: {fileID: 0}
     - target: {fileID: 4412397134705259005, guid: 901ee8ddd13aa83418f260834ce7d3aa,
         type: 3}
