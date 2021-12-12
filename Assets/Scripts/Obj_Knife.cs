@@ -25,6 +25,8 @@ public class Obj_Knife : MonoBehaviour
         if(startImbeded) { initImbeded(); }
         else { init(); }
         
+        float tScale = PlayerPrefs.GetFloat("world_scale", .85f);
+        this.transform.localScale = new Vector3(tScale, tScale, tScale);
     }
 
     private void initImbeded()

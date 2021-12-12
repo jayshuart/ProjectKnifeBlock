@@ -48,6 +48,10 @@ public class Block_Rotator : MonoBehaviour
         //set own values
         animTime = 0;
 
+        //set scale
+        float tScale = PlayerPrefs.GetFloat("world_scale", .85f);
+        this.transform.localScale = new Vector3(tScale, tScale, tScale);
+
         if(!this.isActiveAndEnabled) { this.enabled = true; }
     }
 }

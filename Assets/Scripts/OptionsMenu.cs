@@ -13,6 +13,9 @@ public class OptionsMenu : MonoBehaviour
     [SerializeField] private Button intenseBtn;
     [SerializeField] private Button relaxedBtn;
     [SerializeField] private Button muteBtn;
+    [SerializeField] private Slider scaleSlider;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +24,10 @@ public class OptionsMenu : MonoBehaviour
         {
             StartCoroutine(autoSelectBtn_workaround());
             StartCoroutine(close_workaround());
+
+            float tScale = PlayerPrefs.GetFloat("world_scale", .85f);
+            setGameScale(tScale);
+            scaleSlider.value = tScale;
         }
         
     }
@@ -60,6 +67,14 @@ public class OptionsMenu : MonoBehaviour
     {
         SoundManager.Instance.playClickSfx();
         this.gameObject.SetActive(false);
+    }
+
+    public void OnSliderValueChanged(float value){
+        setGameScale(value);
+    }
+
+    public void setGameScale(float pScale){
+        PlayerPrefs.SetFloat("world_scale", pScale);
     }
 
     public void playIntenseMusic(){
@@ -117,5 +132,9 @@ public class OptionsMenu : MonoBehaviour
                 muteBtn.interactable = false;
                 break;
         }
+    }
+
+    public void onClickHome(){ Debug.Log("go home");
+        SceneManager.LoadScene("Splash");
     }
 }

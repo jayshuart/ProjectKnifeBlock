@@ -19,7 +19,7 @@ public class Splash : MonoBehaviour
 
         //handle if we are on an olde rversion and need to update some data
         if(!PlayerPrefs.HasKey("v1"))
-        { Debug.Log("missing v1");
+        {
             PlayerPrefs.SetInt("v1", 1);
             clearHighscore();
         }
@@ -50,6 +50,7 @@ public class Splash : MonoBehaviour
     public void onClickPlay()
     {
         playBtn.interactable = false;
+        anim.
         anim.Play("Selected");
         StartCoroutine(gotoGame());
     }
