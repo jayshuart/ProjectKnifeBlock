@@ -50,7 +50,6 @@ public class Splash : MonoBehaviour
     public void onClickPlay()
     {
         playBtn.interactable = false;
-        anim.
         anim.Play("Selected");
         StartCoroutine(gotoGame());
     }
