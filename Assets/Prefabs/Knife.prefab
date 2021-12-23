@@ -123,6 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  rb: {fileID: 0}
   throwSpeed: 35
   startImbeded: 0
   goldSprite: {fileID: 21300000, guid: 327446b2b73744f42853acdf2c6ef7ed, type: 3}
@@ -141,7 +142,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 55
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}

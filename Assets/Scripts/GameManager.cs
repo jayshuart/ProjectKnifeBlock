@@ -30,6 +30,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private FailDisplay failScreen;
     [SerializeField] private WinDisplay winDisplay;
 
+    private bool lastInput;
+    private Vector3 position;
+    private float width;
+    private float height;
+
     private bool unlockDifficulty;
 
     // Start is called before the first frame update
@@ -38,11 +43,72 @@ public class GameManager : MonoBehaviour
         unlockDifficulty = false;
         knives = -1;
         prepRound();
+
+        width = (float)Screen.width / 2.0f;
+        height = (float)Screen.height / 2.0f;
+
+        // Position used for the cube.
+        position = new Vector3(0.0f, 0.0f, 0.0f);
+        lastInput = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        checkInput();
+    }
+
+    void checkInput(){
+        bool hasInput = Input.GetMouseButton(0);
+        if (hasInput){ //input on this frame
+
+            Vector2 pos = Input.mousePosition;
+            knifeToFinger(pos);
+        }
+        else if(lastInput){ //no input this frame, btu last one did
+            throwKnife();
+        }
+        else{
+            knifeToHome();
+        }
+
+        lastInput = hasInput;
+    }
+
+    void knifeToFinger(Vector2 pos){
+        if(currentKnife == null) { return; }
+
+        float speed = 100;
+
+        position = Camera.main.ScreenToWorldPoint(pos);
+        position.z = 0; //keep above bg
+        position.x = 0; //(position.x - currentKnife.transform.position.x) * speed / 10;
+        position.y = (position.y - currentKnife.transform.position.y) * speed;
+
+        
+
+        //cap y movement
+        float maxY = Camera.main.ScreenToWorldPoint(new Vector2(0, height)).y - 1.0f;
+        if(currentKnife.transform.position.y > maxY){
+            Vector3 maxed = currentKnife.transform.position;
+            maxed.y = maxY;
+            currentKnife.transform.position = maxed;
+            //knifeToHome();
+        }
+        else{
+            currentKnife.rb.AddForce(position);
+        }
+    }
+
+    void knifeToHome(){
+        if(currentKnife == null) { return; }
+        float speed = 100; //-75;
+
+        position.z = 0; //keep at right z
+        //currentKnife.transform.position = position;
+        position.x = (0 - currentKnife.transform.position.x) * speed;
+        position.y = (0 - currentKnife.transform.position.y - 5) * speed;
+        currentKnife.rb.AddForce(position);
     }
 
     public void spawnKnife()
@@ -66,6 +132,9 @@ public class GameManager : MonoBehaviour
     public void throwKnife()
     {
         if(currentKnife == null) { return; }
+
+        //validate we have enough speed
+        if(currentKnife.rb.velocity.y < 5.0f) { return; }
 
         currentKnife.throwKnife();
         currentKnife = null; //clear it bc its been thrown

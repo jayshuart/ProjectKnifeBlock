@@ -7,7 +7,7 @@ public class Obj_Knife : MonoBehaviour
 
     public GameObject target;
     private Collider2D targetCol;
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
     private BoxCollider2D col;
     [SerializeField] private float throwSpeed;
     private bool moving;
@@ -108,6 +108,9 @@ public class Obj_Knife : MonoBehaviour
 
     public void throwKnife()
     {
+        rb.velocity = Vector2.zero;
+        rb.drag = 0;
+        
         moving = true;
         col.enabled = true;
         SoundManager.Instance.playThrowSfx();
@@ -205,11 +208,10 @@ public class Obj_Knife : MonoBehaviour
     //clean up if offscrean
     void OnBecameInvisible() 
     {
-        if(!startImbeded)
+        if(!startImbeded && rb.drag == 0) //not imbeded, and using drag as a flag for if its been properly thrown
         {
             //delet this one bc its out of bounds
             Destroy(this.gameObject);
-
             gm.Fail();
         }
     }
