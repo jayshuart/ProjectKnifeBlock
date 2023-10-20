@@ -175,26 +175,28 @@ public class Obj_Knife : MonoBehaviour
 
     IEnumerator hover()
     {   
-        float hoverDuration = .5f;
+        float hoverDuration = 0.0f;
         int hoverDir = 1;
         float moveDist = .5f;
 
         while(!moving && !thrown)
         {
 
-            hoverDuration -= Time.deltaTime * 8;
-            float currentY = this.transform.localPosition.y;
+            if(canHover){
+                hoverDuration -= Time.deltaTime;
+                float currentY = this.transform.localPosition.y;
 
-            if(hoverDuration > 0)
-            {
-                currentY += ((moveDist * Time.deltaTime) * hoverDir);
-                this.transform.localPosition = new Vector3(this.transform.localPosition.x, currentY, this.transform.localPosition.z);
-            }
-            else
-            {
-                hoverDuration = 3f;
-                hoverDir *= -1;
-                //yield return new WaitForSeconds(3f);
+                if(hoverDuration > 0)
+                {
+                    currentY += ((moveDist * Time.deltaTime) * hoverDir);
+                    this.transform.localPosition = new Vector3(this.transform.localPosition.x, currentY, this.transform.localPosition.z);
+                }
+                else
+                {
+                    hoverDuration = .5f;
+                    hoverDir *= -1;
+                    //yield return new WaitForSeconds(3f);
+                }
             }
 
             yield return null;

@@ -86,7 +86,7 @@ public class GameManager : MonoBehaviour
     void knifeToFinger(Vector2 pos){
         if(currentKnife == null || currentKnife.rb == null) { return; }
 
-        
+        currentKnife.canHover = false;
 
         float speed = 100;
 
@@ -97,27 +97,33 @@ public class GameManager : MonoBehaviour
 
         //cap y movement
         float tScreenHeight = (float)Screen.height;
-        float maxYMove = Camera.main.ScreenToWorldPoint(new Vector2(0, tScreenHeight * .3f)).y;
+        float maxYMove = Camera.main.ScreenToWorldPoint(new Vector2(0, tScreenHeight * .4f)).y;
 
         if(currentKnife.transform.position.y > maxYMove){
             Vector3 maxed = currentKnife.transform.position;
             maxed.y = maxYMove;
             currentKnife.transform.position = maxed;
+            
         }
-        else{
-            currentKnife.rb.AddForce(position);
-        }
+
+        if(position.y > 100f) { position.y = 100f;}
+        currentKnife.rb.AddForce(position);
     }
 
     void knifeToHome(){
-        if(currentKnife == null || currentKnife.rb == null) { return; }
-        float speed = 100; //-75;
+        if(currentKnife == null || currentKnife.rb == null || currentKnife.canHover) { return; }
 
-        position.z = 0; //keep at right z
-        //currentKnife.transform.position = position;
-        //position.x = (0 - currentKnife.transform.position.x) * speed;
-        position.y = (0 - currentKnife.transform.position.y - 4.5f) * speed;
-        currentKnife.rb.AddForce(position);
+        float tMinPos = .3f;
+        float tDirModifier = currentKnife.transform.localPosition.y < tMinPos ? 1 : -1;
+        Vector3 tPosAdjust = new Vector3(0, currentKnife.transform.localPosition.y + ((20f * tDirModifier) * Time.deltaTime), 0);
+        
+        if((tDirModifier == -1 && tPosAdjust.y < tMinPos)
+        || tDirModifier == 1 && tPosAdjust.y > tMinPos) { 
+            tPosAdjust.y = tMinPos; 
+            currentKnife.canHover = true;
+        }
+
+        currentKnife.transform.localPosition = tPosAdjust;
     }
 
     public void spawnKnife()
