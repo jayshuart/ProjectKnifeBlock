@@ -12,6 +12,7 @@ public class Obj_Knife : MonoBehaviour
     [SerializeField] private float throwSpeed;
     private bool moving;
     private bool thrown;
+    public bool canHover = true;
     [SerializeField] bool startImbeded = false; //not a thrown knife, starts as a part of the block
 
     [SerializeField] private Sprite goldSprite;
@@ -180,17 +181,13 @@ public class Obj_Knife : MonoBehaviour
 
         while(!moving && !thrown)
         {
+
             hoverDuration -= Time.deltaTime * 8;
             float currentY = this.transform.localPosition.y;
 
-            if(hoverDuration > 0 && hoverDir == 1)
+            if(hoverDuration > 0)
             {
-                currentY += moveDist * Time.deltaTime;
-                this.transform.localPosition = new Vector3(this.transform.localPosition.x, currentY, this.transform.localPosition.z);
-            }
-            else if(hoverDuration > 0 && hoverDir == -1)
-            {
-                currentY -= moveDist * Time.deltaTime;
+                currentY += ((moveDist * Time.deltaTime) * hoverDir);
                 this.transform.localPosition = new Vector3(this.transform.localPosition.x, currentY, this.transform.localPosition.z);
             }
             else

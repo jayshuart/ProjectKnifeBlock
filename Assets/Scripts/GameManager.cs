@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class GameManager : MonoBehaviour
 {
@@ -29,8 +30,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Animator winAnim;
     [SerializeField] private FailDisplay failScreen;
     [SerializeField] private WinDisplay winDisplay;
+    [SerializeField] private GameObject optionsScreen;
 
-    private bool lastInput;
+    private bool allowKnifeInput = false;
     private Vector3 position;
     private float width;
     private float height;
@@ -49,7 +51,6 @@ public class GameManager : MonoBehaviour
 
         // Position used for the cube.
         position = new Vector3(0.0f, 0.0f, 0.0f);
-        lastInput = false;
     }
 
     // Update is called once per frame
@@ -59,24 +60,33 @@ public class GameManager : MonoBehaviour
     }
 
     void checkInput(){
+        
+        if(Input.GetMouseButtonDown(0)){
+            allowKnifeInput = !EventSystem.current.IsPointerOverGameObject(0);
+        }
+        
         bool hasInput = Input.GetMouseButton(0);
-        if (hasInput){ //input on this frame
-
+        if (allowKnifeInput && hasInput){ //input on this frame
             Vector2 pos = Input.mousePosition;
             knifeToFinger(pos);
         }
-        else if(lastInput){ //no input this frame, btu last one did
+        else if(allowKnifeInput && Input.GetMouseButtonUp(0)){ //no input this frame, btu last one did
+            Vector2 pos = Input.mousePosition;
+            knifeToFinger(pos);
+
             throwKnife();
+            allowKnifeInput = false;
         }
         else{
             knifeToHome();
+            allowKnifeInput = false;
         }
-
-        lastInput = hasInput;
     }
 
     void knifeToFinger(Vector2 pos){
-        if(currentKnife == null) { return; }
+        if(currentKnife == null || currentKnife.rb == null) { return; }
+
+        
 
         float speed = 100;
 
@@ -85,15 +95,14 @@ public class GameManager : MonoBehaviour
         position.x = 0; //(position.x - currentKnife.transform.position.x) * speed / 10;
         position.y = (position.y - currentKnife.transform.position.y) * speed;
 
-        
-
         //cap y movement
-        float maxY = Camera.main.ScreenToWorldPoint(new Vector2(0, height)).y - 1.0f;
-        if(currentKnife.transform.position.y > maxY){
+        float tScreenHeight = (float)Screen.height;
+        float maxYMove = Camera.main.ScreenToWorldPoint(new Vector2(0, tScreenHeight * .3f)).y;
+
+        if(currentKnife.transform.position.y > maxYMove){
             Vector3 maxed = currentKnife.transform.position;
-            maxed.y = maxY;
+            maxed.y = maxYMove;
             currentKnife.transform.position = maxed;
-            //knifeToHome();
         }
         else{
             currentKnife.rb.AddForce(position);
@@ -101,13 +110,13 @@ public class GameManager : MonoBehaviour
     }
 
     void knifeToHome(){
-        if(currentKnife == null) { return; }
+        if(currentKnife == null || currentKnife.rb == null) { return; }
         float speed = 100; //-75;
 
         position.z = 0; //keep at right z
         //currentKnife.transform.position = position;
-        position.x = (0 - currentKnife.transform.position.x) * speed;
-        position.y = (0 - currentKnife.transform.position.y - 5) * speed;
+        //position.x = (0 - currentKnife.transform.position.x) * speed;
+        position.y = (0 - currentKnife.transform.position.y - 4.5f) * speed;
         currentKnife.rb.AddForce(position);
     }
 
@@ -135,6 +144,7 @@ public class GameManager : MonoBehaviour
 
         //validate we have enough speed
         if(currentKnife.rb.velocity.y < 5.0f) { return; }
+
 
         currentKnife.throwKnife();
         currentKnife = null; //clear it bc its been thrown
