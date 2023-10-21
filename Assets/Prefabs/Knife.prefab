@@ -127,7 +127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   rb: {fileID: 0}
-  throwSpeed: 35
+  throwSpeed: 40
   canHover: 1
   startImbeded: 0
   goldSprite: {fileID: 21300000, guid: 327446b2b73744f42853acdf2c6ef7ed, type: 3}

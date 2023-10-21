@@ -33,7 +33,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject optionsScreen;
 
     private bool allowKnifeInput = false;
+    private bool clickHeld = false;
+    private bool clickUp = false;
     private Vector3 position;
+    private float maxYMove;
     private float width;
     private float height;
 
@@ -51,6 +54,9 @@ public class GameManager : MonoBehaviour
 
         // Position used for the cube.
         position = new Vector3(0.0f, 0.0f, 0.0f);
+
+        float tScreenHeight = (float)Screen.height;
+        maxYMove = Camera.main.ScreenToWorldPoint(new Vector2(0, tScreenHeight * .4f)).y;
     }
 
     // Update is called once per frame
@@ -71,9 +77,7 @@ public class GameManager : MonoBehaviour
             knifeToFinger(pos);
         }
         else if(allowKnifeInput && Input.GetMouseButtonUp(0)){ //no input this frame, btu last one did
-            Vector2 pos = Input.mousePosition;
-            knifeToFinger(pos);
-
+            position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             throwKnife();
             allowKnifeInput = false;
         }
@@ -88,30 +92,21 @@ public class GameManager : MonoBehaviour
 
         currentKnife.canHover = false;
 
-        float speed = 100;
+        float speed = 15f;
 
         position = Camera.main.ScreenToWorldPoint(pos);
-        position.z = 0; //keep above bg
-        position.x = 0; //(position.x - currentKnife.transform.position.x) * speed / 10;
-        position.y = (position.y - currentKnife.transform.position.y) * speed;
+        position.z = 0;
+        position.x = 0;
 
         //cap y movement
-        float tScreenHeight = (float)Screen.height;
-        float maxYMove = Camera.main.ScreenToWorldPoint(new Vector2(0, tScreenHeight * .4f)).y;
-
-        if(currentKnife.transform.position.y > maxYMove){
-            Vector3 maxed = currentKnife.transform.position;
-            maxed.y = maxYMove;
-            currentKnife.transform.position = maxed;
-            
-        }
-
-        if(position.y > 100f) { position.y = 100f;}
-        currentKnife.rb.AddForce(position);
+        Vector3 posAdjust = new Vector3(0, currentKnife.transform.position.y + (speed * Time.deltaTime), 0);
+        if(posAdjust.y > position.y) { posAdjust.y = position.y; }
+        if(posAdjust.y > maxYMove) { posAdjust.y = maxYMove; }
+        currentKnife.transform.position = posAdjust;
     }
 
     void knifeToHome(){
-        if(currentKnife == null || currentKnife.rb == null || currentKnife.canHover) { return; }
+        if(currentKnife == null || currentKnife.canHover) { return; }
 
         float tMinPos = .3f;
         float tDirModifier = currentKnife.transform.localPosition.y < tMinPos ? 1 : -1;
@@ -149,8 +144,8 @@ public class GameManager : MonoBehaviour
         if(currentKnife == null) { return; }
 
         //validate we have enough speed
-        if(currentKnife.rb.velocity.y < 5.0f) { return; }
-
+        Debug.Log(currentKnife.transform.position.y - position.y);
+        if(currentKnife.transform.position.y - position.y >= 0.0f) { return; }
 
         currentKnife.throwKnife();
         currentKnife = null; //clear it bc its been thrown
