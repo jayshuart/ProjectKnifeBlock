@@ -144,7 +144,6 @@ public class GameManager : MonoBehaviour
         if(currentKnife == null) { return; }
 
         //validate we have enough speed
-        Debug.Log(currentKnife.transform.position.y - position.y);
         if(currentKnife.transform.position.y - position.y >= 0.0f) { return; }
 
         currentKnife.throwKnife();
@@ -231,8 +230,13 @@ public class GameManager : MonoBehaviour
 
         //initalize round os we can grab data
         int oldKnives = knives;
-        do{ round.init(); }
-        while(oldKnives == round.Knives);
+        int attempts = 0; //will use to check if we need to cleanup and saftey catch for the while loop
+        do{ 
+            if(attempts > 0) { round.cleanup(); }
+            round.init(); 
+            attempts++;
+        }
+        while(attempts < 20 && (oldKnives == round.Knives || round.Knives <= 1));
         knives = round.Knives;
 
         //make new block
